@@ -1,0 +1,10 @@
+.menu {
+  position: fixed;
+  top: 80px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $secondaryBackground;
+  box-shadow: inset 0px -1px 0px #E4E5E6, inset 0px 1px 0px #E4E5E6;
+  z-index: $menuZIndex;
+}

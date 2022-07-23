@@ -1,0 +1,29 @@
+.popularity {
+  padding-top: 34px;
+  padding-bottom: 40px;
+  background-color: $primaryBackground;
+
+  &__title {
+    font-weight: 600;
+    font-size: 20px;
+    color: $whiteColor;
+    margin-bottom: 15px;
+  }
+
+  &__wrapper {
+    white-space: nowrap;
+    overflow-x: scroll;
+    padding: 4px 20px 20px;
+    margin: -4px -20px -20px;
+  }
+
+  &__card {
+    display: inline-block;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+
+    &+& {
+      margin-left: 20px;
+    }
+  }
+}

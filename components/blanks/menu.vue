@@ -1,13 +1,12 @@
 <template lang="pug">
-  section.b-main
-    .__header
-      h2.__title For example
+  .b-menu
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component
-export default class Tutorial extends Vue {
+export default class Menu extends Vue {
+
 }
 </script>
