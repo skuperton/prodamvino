@@ -1,6 +1,6 @@
 .hero{
   position: relative;
-  padding-top: 27px;
+  padding-top: 107px;
   padding-bottom: 40px;
 
   &__container {
@@ -14,6 +14,16 @@
       right: 20px;
       background-image: url("static/images/promo.png");
       background-size: contain;
+      animation: resize 1s linear;
+    }
+
+    @keyframes resize {
+      from {
+        transform: scale(0.5);
+      }
+      to {
+        transform: scale(1);
+      }
     }
   }
 
@@ -92,7 +102,7 @@
   }
 
   @media (min-width: $tablet) {
-    padding-top: 50px;
+    padding-top: 151px;
     padding-bottom: 80px;
 
     &__container {
@@ -148,7 +158,7 @@
   }
 
   @media (min-width: $desktop) {
-    padding-top: 103px;
+    padding-top: 225px;
     padding-bottom: 177px;
 
     &__container {

@@ -1,0 +1,17 @@
+.rating {
+  &__wrapper {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__star {
+    font-size: 12px;
+    color: $starColor;
+  }
+
+  @media (min-width: $desktop) {
+    &__star {
+      font-size: 20px;
+    }
+  }
+}

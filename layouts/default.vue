@@ -1,21 +1,28 @@
 <template lang="pug">
   div
-    plug-component
     header-component
     Nuxt
+    footer-component
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import Header from '~/components/blanks/header.vue'
-import Plug from '~/components/ui/plug.vue'
+import Footer from '~/components/blanks/footer.vue'
+import getOs from '~/ts/getOs'
 
 @Component({
   components: {
-    'plug-component': Plug,
-    'header-component': Header
+    'header-component': Header,
+    'footer-component': Footer
   }
 })
 export default class DefaultLayout extends Vue {
+  mounted () {
+    window.onbeforeunload = () => {
+      window.scrollTo(0, 0)
+    }
+    document.documentElement.classList.add(`os-${getOs()}`)
+  }
 }
 </script>

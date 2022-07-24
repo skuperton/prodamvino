@@ -23,12 +23,28 @@ export default {
     nuxt: globalName => `$${globalName}`
   },
 
+  // Font Awesome Icons
+  fontawesome: {
+    icons: {
+      solid: true,
+      regular: true
+    }
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['~/assets/scss/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '@/plugins/aos', mode: 'client' }
   ],
+
+  // Custom loading
+  // loadingIndicator: {
+  //   name: '~/assets/loading.html',
+  //   img: '/images/loading.gif'
+  // },
+  loading: '@/components/blanks/loading.vue',
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -36,7 +52,9 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build'
+    '@nuxt/typescript-build',
+    '@nuxtjs/fontawesome',
+    '@nuxtjs/device'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

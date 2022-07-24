@@ -1,7 +1,22 @@
 .header {
-  padding: 15px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 	background: #FFFFFF;
 	box-shadow: $shadow;
+  z-index: $headerZIndex;
+
+  &__plug {
+    height: 10px;
+    width: 100%;
+    background-color: $primaryBackground;
+  }
+
+  &__container {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
 
 	&__dropdown {
     display: none;
@@ -11,32 +26,6 @@
 		& + & {
 			margin-left: 100px;
 		}
-	}
-
-	button {
-    display: flex;
-    align-items: center;
-    padding: 12px 10px;
-    background: $secondaryBackground;
-		box-shadow: $shadow;
-		border-radius: 5px;
-		font-weight: 600;
-		font-size: 11px;
-		color: $secondaryColor;
-    transition-duration: .2s;
-    transition-timing-function: ease;
-    transition-property: color, background-color;
-
-    img {
-      height: 12px;
-      width: 12px;
-      margin-right: 10px;
-    }
-
-    &:hover {
-      color: $whiteColor;
-      background-color: $primaryBackground;
-    }
 	}
 
   &__container {
@@ -139,9 +128,17 @@
   }
 
   @media (min-width: $tablet) {
-    padding: 18px 0;
+    &__plug {
+      height: 15px;
+    }
+
+    &__container {
+      padding-top: 18px;
+      padding-bottom: 18px;
+    }
 
     &__logotype {
+      cursor: pointer;
       svg {
         height: 40px;
         width: 78px;
@@ -161,20 +158,20 @@
       display: none;
     }
 
-    button {
-      padding: 10px 16px;
-      font-size: 16px;
+    &__button {
       margin-left: 50px;
-
-      img {
-        height: 16px;
-        width: 16px;
-      }
     }
   }
 
   @media (min-width: $desktop) {
-    padding: 20px 0;
+    &__plug {
+      height: 20px;
+    }
+
+    &__container {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
 
     &__tagline {
       display: inline-block;
@@ -193,15 +190,8 @@
         margin-left: 100px;
       }
     }
-    button {
-      padding: 10px 20px;
-      font-size: 20px;
+    &__button {
       margin-left: 100px;
-
-      img {
-        height: 20px;
-        width: 20px;
-      }
     }
   }
 }

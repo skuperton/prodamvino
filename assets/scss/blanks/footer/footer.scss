@@ -1,0 +1,170 @@
+.footer {
+  padding-top: 35px;
+  padding-bottom: 35px;
+  text-align: center;
+  background-color: $secondaryBackground;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px
+  }
+
+  &__copyright {
+    font-size: 11px;
+    order: 2;
+  }
+
+  &__information {
+    order: 1;
+  }
+
+  &__link {
+    display: block;
+    font-size: 11px;
+    opacity: 0.5;
+    color: $secondaryColor;
+
+    &+& {
+      margin-top: 10px;
+    }
+  }
+
+  &__number,
+  &__email {
+    font-size: 20px;
+    color: $secondaryColor;
+  }
+
+  &__number {
+    order: 1;
+  }
+
+  &__email {
+    order: 2;
+  }
+
+  &__left {
+    display: flex;
+    order: 3;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  @media (min-width: $tabletLate) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    &__container {
+      flex-direction: row
+    }
+
+    &__left {
+      order: 1;
+    }
+
+    &__right {
+      order: 2;
+    }
+
+    &__number {
+      order: 2;
+      font-size: 26px;
+    }
+
+    &__email {
+      order: 3;
+      font-size: 26px;
+    }
+
+    &__copyright {
+      order: 1;
+      text-align: left;
+      font-size: 12px;
+    }
+
+    &__information {
+      order: 2;
+    }
+
+    &__link {
+      text-align: left;
+      position: relative;
+
+      &--info {
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  @media (min-width: $desktop) {
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    &__right {
+      flex-direction: row;
+      gap: 20px;
+    }
+
+    &__number {
+      font-size: 36px;
+    }
+
+    &__email {
+      font-size: 36px;
+    }
+
+    &__copyright {
+      font-size: 20px;
+    }
+
+    &__link {
+      display: inline-block;
+      font-size: 14px;
+
+      padding-right: 10px;
+      margin-left: 10px;
+
+      &+&{
+        margin-top: 0;
+      }
+
+      &:not(:last-child){
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          width: 1px;
+          background-color: $secondaryColor;
+          opacity: 0.5;
+        }
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+
+  @media (min-width: 1330px) {
+    &__right {
+      gap: 50px;
+    }
+  }
+}
