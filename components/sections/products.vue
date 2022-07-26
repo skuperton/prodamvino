@@ -45,7 +45,7 @@ export default class Products extends Vue {
     },
     {
       id: 5,
-      imageName: 'shapm',
+      imageName: 'shamp',
       name: 'Шампанское'
     }
   ]

@@ -6,10 +6,10 @@ export default ({ app }) => {
     if (typeof window !== 'undefined') {
       app.AOS = AOS.init({
         // Global settings
-        // startEvent: 'DOMContentLoaded',
+        startEvent: 'DOMContentLoaded',
 
         // Settings that can be overridden
-        disable: 'tablet',
+        disable: window.innerWidth < 1200,
         offset: 200,
         duration: 600,
         easing: 'ease',

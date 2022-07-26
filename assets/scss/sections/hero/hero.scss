@@ -5,26 +5,16 @@
 
   &__container {
     position: relative;
-    &::after {
-      content: "";
-      position: absolute;
-      height: 130px;
-      width: 159px;
-      top: 71px;
-      right: 20px;
-      background-image: url("static/images/promo.png");
-      background-size: contain;
-      animation: resize 1s linear;
-    }
+  }
 
-    @keyframes resize {
-      from {
-        transform: scale(0.5);
-      }
-      to {
-        transform: scale(1);
-      }
-    }
+  &__image {
+    position: absolute;
+    height: 130px;
+    width: 159px;
+    top: 71px;
+    right: 20px;
+    background-size: contain;
+    pointer-events: none;
   }
 
   &__title {
@@ -91,13 +81,11 @@
   }
 
   @media (min-width: 500px) {
-    &__container {
-      &::after {
-        height: 230px;
-        width: 280px;
-        top: -9px;
-        right: 15px;
-      }
+    &__image {
+      height: 230px;
+      width: 280px;
+      top: -9px;
+      right: 15px;
     }
   }
 
@@ -105,13 +93,11 @@
     padding-top: 151px;
     padding-bottom: 80px;
 
-    &__container {
-      &::after {
-        height: 230px;
-        width: 280px;
-        top: 150px;
-        right: 55px;
-      }
+    &__image {
+      height: 230px;
+      width: 280px;
+      top: 150px;
+      right: 55px;
     }
 
     &__title {
@@ -147,13 +133,11 @@
   }
 
   @media (min-width: 900px) {
-    &__container {
-      &::after {
-        height: 410px;
-        width: 500px;
-        top: 0;
-        right: 55px;
-      }
+    &__image {
+      height: 410px;
+      width: 500px;
+      top: 0;
+      right: 55px;
     }
   }
 
@@ -161,13 +145,11 @@
     padding-top: 225px;
     padding-bottom: 177px;
 
-    &__container {
-      &::after {
-        height: 549px;
-        width: 670px;
-        top: -55px;
-        right: 19px;
-      }
+    &__image {
+      height: 549px;
+      width: 670px;
+      top: -55px;
+      right: 19px;
     }
 
     &__title {

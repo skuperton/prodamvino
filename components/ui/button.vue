@@ -26,6 +26,7 @@ export interface IButtonProps {
   href?: string
   ariaLabel: string
   iconName: string
+  iconStyle: string
   shadow: 'flat' | 'box'
 }
 
@@ -36,7 +37,7 @@ export default class Button extends Vue {
   @Prop({ default: 'button' }) readonly tag?: IButtonProps['tag']
   @Prop({ default: 'button' }) readonly type?: IButtonProps['type']
   @Prop({ required: true }) readonly ariaLabel!: IButtonProps['ariaLabel']
-  @Prop({ default: 'fas' }) readonly iconStyle?: IButtonProps['iconName']
+  @Prop({ default: 'fas' }) readonly iconStyle?: IButtonProps['iconStyle']
   @Prop({ default: 'flat' }) readonly shadow?: IButtonProps['shadow']
   @Prop() readonly iconName?: IButtonProps['iconName']
   @Prop() readonly href?: IButtonProps['href']

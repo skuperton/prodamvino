@@ -32,6 +32,12 @@
             data-aos-offset="0"
             data-aos-delay="700"
           ) Онлайн-расчет
+      img.__image(
+        data-aos="zoom-in"
+        data-aos-offset="0"
+        data-aos-delay="800"
+        src="images/promo.png"
+      )
 </template>
 
 <script lang="ts">
@@ -39,5 +45,6 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class Hero extends Vue {
+
 }
 </script>

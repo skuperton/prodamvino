@@ -3,4 +3,3 @@ export type PartialRecord<K extends keyof any, T> = {
 }
 
 export type Maybe<T> = null | T
-

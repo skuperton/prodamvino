@@ -6,6 +6,8 @@
     steps-component
     reviews-component
     promo-component
+    redemption-component
+    questions-component
 </template>
 
 <script lang="ts">
@@ -16,10 +18,13 @@ import Popularity from '~/components/sections/popularity.vue'
 import Steps from '~/components/sections/steps.vue'
 import Promo from '~/components/sections/promo.vue'
 import Reviews from '~/components/sections/reviews.vue'
-import getOs from '~/ts/getOs'
+import Questions from '~/components/sections/questions.vue'
+import Redemption from '~/components/sections/redemption.vue'
 
 @Component({
   components: {
+    'redemption-component': Redemption,
+    'questions-component': Questions,
     'reviews-component': Reviews,
     'promo-component': Promo,
     'steps-component': Steps,

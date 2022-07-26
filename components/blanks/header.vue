@@ -1,10 +1,9 @@
 <template lang="pug">
   header.b-header(
-    data-aos-offset="0"
-    data-aos="fade"
-    data-aos-delay="100"
-    data-aos-once="true"
-    data-aos-mirror="false"
+    :class="classes"
+    ref="header"
+    v-on-clickaway="hideMenu"
+    v-on:keyup.esc="hideMenu"
   )
     transition(
       name="fade-up"
@@ -19,33 +18,53 @@
         logotype-component.__logotype
         span.__tagline {{tagline}}
       .__navigation
-        p.__dropdown Виды алкоголя
-        p.__dropdown Информация
+        link-component.__dropdown(
+          tag="button"
+          view="secondary"
+          iconName="angle-down"
+          @click="toggleMenuContent('types')"
+        ) Виды алкоголя
+        link-component.__dropdown(
+          tag="button"
+          view="secondary"
+          iconName="angle-down"
+          @click="toggleMenuContent('information')"
+        ) Информация
         button-component.__button(
           shadow="box"
           view="secondary"
           icon-name="phone"
           aria-label="Позвонить мне"
+          @click="toggleMenuContent('contact')"
         ) Позвонить мне
         .__burger(
-          :class="menuActive ? 'active' : ''"
-          @click="toggleMenu"
+          :class="burgerMenuActive ? 'active' : ''"
+          @click="toggleMenuContent('mobile')"
         )
           span
           span
           span
-    menu-component.__menu(
-      v-if="menuActive"
+    transition(
+      name="fade"
+      mode="out-in"
     )
+      menu-component.__menu(
+        v-if="menuActive"
+        :current-content="menuContent"
+        :indent="$refs.header.clientHeight"
+      )
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import Logotype from '~/components/ui/logotype.vue'
-import Menu from '~/components/blanks/menu.vue'
+import Menu, { IMenu } from '~/components/blanks/menu.vue'
 import Button from '~/components/ui/button.vue'
+import Link from '~/components/ui/link.vue'
+
 @Component({
   components: {
+    'link-component': Link,
     'button-component': Button,
     'logotype-component': Logotype,
     'menu-component': Menu
@@ -55,10 +74,37 @@ export default class Header extends Vue {
   tagline = 'Купим дорого \n ваш алкоголь'
 
   menuActive = false
+  menuContent: IMenu['currentContent'] | string = ''
+  burgerMenuActive = false
+
   isShowPlug = false
+
+  toggleMenuContent (content: IMenu['currentContent']) {
+    if (this.menuContent === content) {
+      this.menuActive = !this.menuActive
+    } else {
+      this.menuActive = true
+    }
+
+    if (content === 'mobile') {
+      this.burgerMenuActive = !this.burgerMenuActive
+    } else {
+      this.burgerMenuActive = false
+    }
+
+    this.menuContent = content
+  }
+
+  onResize () {
+    this.menuActive = false
+  }
 
   toggleMenu () {
     this.menuActive = !this.menuActive
+  }
+
+  hideMenu () {
+    this.menuActive = false
   }
 
   setIsShowPlug () {
@@ -70,8 +116,14 @@ export default class Header extends Vue {
     }
   }
 
-  addScrollEvent (): void {
+  addEvents (): void {
     window.addEventListener('scroll', this.onScroll, { passive: true })
+    window.addEventListener('resize', this.onResize, { passive: true })
+  }
+
+  removeEvents (): void {
+    window.removeEventListener('scroll', this.onScroll)
+    window.removeEventListener('resize', this.onResize)
   }
 
   onScroll (): void {
@@ -95,9 +147,17 @@ export default class Header extends Vue {
     }
   }
 
+  get classes () {
+    return this.menuActive ? ['active'] : ''
+  }
+
   mounted () {
-    this.addScrollEvent()
+    this.addEvents()
     this.setIsShowPlug()
+  }
+
+  beforeDestroy (): void {
+    this.removeEvents()
   }
 }
 </script>

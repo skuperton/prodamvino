@@ -7,6 +7,21 @@
 	box-shadow: $shadow;
   z-index: $headerZIndex;
 
+  &.active {
+    & .header {
+      &__container {
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          border-bottom: $menuBorderStyle;
+        }
+      }
+    }
+  }
+
   &__plug {
     height: 10px;
     width: 100%;
@@ -14,6 +29,7 @@
   }
 
   &__container {
+    position: relative;
     padding-top: 15px;
     padding-bottom: 15px;
   }
@@ -150,12 +166,24 @@
       font-size: 16px;
 
       &+& {
-        margin-left: 50px;
+        margin-left: 30px;
       }
     }
 
     &__burger {
       display: none;
+    }
+
+    &__button {
+      margin-left: 30px;
+    }
+  }
+
+  @media (min-width: $tabletLate) {
+    &__dropdown {
+      &+& {
+        margin-left: 50px;
+      }
     }
 
     &__button {

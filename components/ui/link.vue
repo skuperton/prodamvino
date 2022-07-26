@@ -7,28 +7,41 @@
   )
     span
       slot
+      font-awesome-icon.__icon(
+        v-if="iconName"
+        :icon="iconSettings"
+      )
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import { IButtonProps } from '~/components/ui/button.vue'
 
 export interface ILinkProps {
   href: string
   tag?: 'a' | 'button' | 'p'
-  size?: 's' | 'm' | 'inherit'
+  // size?: 's' | 'm' | 'inherit'
   view?: 'primary' | 'secondary'
   underline?: boolean | string
   disabled?: boolean | string
+  iconStyle?: string
+  iconName?: string
 }
 
 @Component
 export default class Link extends Vue {
   @Prop() readonly href!: ILinkProps['href']
   @Prop({ default: 'a' }) readonly tag!: ILinkProps['tag']
-  @Prop({ default: 'm' }) readonly size!: ILinkProps['size']
+  // @Prop({ default: 'm' }) readonly size!: ILinkProps['size']
   @Prop({ default: 'primary' }) readonly view!: ILinkProps['view']
+  @Prop({ default: 'fas' }) readonly iconStyle?: IButtonProps['iconStyle']
+  @Prop() readonly iconName?: IButtonProps['iconName']
   @Prop() readonly underline!: ILinkProps['underline']
   @Prop() readonly disabled?: ILinkProps['disabled']
+
+  get iconSettings () {
+    return [`${this.iconStyle}`, `${this.iconName}`]
+  }
 
   get notLinkTags (): boolean {
     return this.tag !== 'a'
@@ -40,8 +53,8 @@ export default class Link extends Vue {
 
   get classes (): string[] {
     const classes = [
-      `link--view-${this.view}`,
-      `link--size-${this.size}`
+      `link--view-${this.view}`
+      // `link--size-${this.size}`
     ]
 
     if (this.isDisabled) {
