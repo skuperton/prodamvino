@@ -1,0 +1,39 @@
+.social {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  &__link {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    opacity: 0.5;
+    transition-property: opacity;
+    transition-timing-function: ease;
+    transition-duration: .2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__icon {
+    font-size: 18px;
+    color: $whiteColor;
+  }
+
+  @media (min-width: $tablet) {
+    &__link {
+      width: 60px;
+      height: 60px;
+    }
+
+    &__icon {
+      font-size: 30px;
+    }
+  }
+}

@@ -41,8 +41,10 @@
       background-color: $primaryBackground;
       color: $whiteColor ;
 
-      &:hover {
-        background-color: #842338;
+      @media (min-width: $tabletLate) {
+        &:hover {
+          background-color: #842338;
+        }
       }
 
       & .button{
@@ -55,13 +57,15 @@
       background-color: $secondaryBackground;
       color: $secondaryColor;
 
-      &:hover {
-        background-color: #FFDADA;
-        color: $primaryColor;
+      @media (min-width: $tabletLate) {
+        &:hover {
+          background-color: #FFDADA;
+          color: $primaryColor;
 
-        & .button{
-          &__icon {
-            color: $primaryColor;
+          & .button{
+            &__icon {
+              color: $primaryColor;
+            }
           }
         }
       }
@@ -84,7 +88,17 @@
   }
 
   &.is-disabled {
-    opacity: 0.6;
+    background-color: $tagBackground;
+    box-shadow: none;
+    &.button {
+      span {
+        color: $primaryColor;
+        opacity: 0.2;
+      }
+      svg {
+        opacity: 0.2;
+      }
+    }
     pointer-events: none;
   }
 

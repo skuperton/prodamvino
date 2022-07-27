@@ -31,7 +31,7 @@
     color: $primaryColor;
   }
 
-  &.is-active {
+  &[data-active="true"] {
     background-color: $secondaryBackground;
     border-bottom: 1px solid rgba(0,0,0,0.2);
     .collapse {

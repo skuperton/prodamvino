@@ -1,0 +1,48 @@
+.types-layout {
+  @media (max-width: $maxMobile) {
+    border-bottom: $menuBorderStyle;
+  }
+
+  &__title {
+    @media (max-width: $maxMobile) {
+      font-weight: 700;
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+
+  &__content {
+    @media (max-width: $maxMobile) {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-around;
+    }
+  }
+
+  &__product {
+    @media (max-width: $maxMobile) {
+      min-width: 110px;
+    }
+  }
+
+  &__link {
+    @media (max-width: $maxMobile) {
+      display: block;
+      text-align: center;
+      &+& {
+        margin-top: 18px;
+      }
+    }
+  }
+
+  @media (min-width: $tablet) {
+    &__content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-items: flex-start;
+      row-gap: 20px;
+    }
+  }
+}

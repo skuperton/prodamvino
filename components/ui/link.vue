@@ -24,6 +24,7 @@ export interface ILinkProps {
   view?: 'primary' | 'secondary'
   underline?: boolean | string
   disabled?: boolean | string
+  active?: boolean | string
   iconStyle?: string
   iconName?: string
 }
@@ -38,6 +39,7 @@ export default class Link extends Vue {
   @Prop() readonly iconName?: IButtonProps['iconName']
   @Prop() readonly underline!: ILinkProps['underline']
   @Prop() readonly disabled?: ILinkProps['disabled']
+  @Prop() readonly active?: ILinkProps['active']
 
   get iconSettings () {
     return [`${this.iconStyle}`, `${this.iconName}`]
@@ -51,6 +53,10 @@ export default class Link extends Vue {
     return typeof this.disabled !== 'undefined' && this.disabled !== false
   }
 
+  get isActive (): boolean {
+    return typeof this.active !== 'undefined' && this.active !== false
+  }
+
   get classes (): string[] {
     const classes = [
       `link--view-${this.view}`
@@ -59,6 +65,9 @@ export default class Link extends Vue {
 
     if (this.isDisabled) {
       classes.push('is-disabled')
+    }
+    if (this.isActive) {
+      classes.push('is-active')
     }
 
     if (this.isUnderline) {

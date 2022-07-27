@@ -168,6 +168,33 @@
     }
 }
 
+
+.fade-fast {
+  &-enter {
+    opacity: 0;
+
+    &-active {
+      transition: opacity 0.05s ease-in !important;
+    }
+
+    &-to {
+      opacity: 1;
+    }
+  }
+
+  &-leave {
+    opacity: 1;
+
+    &-active {
+      transition: opacity 0.05s ease-out !important;
+    }
+
+    &-to {
+      opacity: 0;
+    }
+  }
+}
+
 .transform-left {
     &-enter {
         transform: translate(100%, 0);

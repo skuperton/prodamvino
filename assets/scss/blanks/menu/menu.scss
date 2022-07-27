@@ -1,6 +1,4 @@
 .menu {
-  padding-top: 15px;
-  padding-bottom: 15px;
   position: fixed;
   top: 80px;
   bottom: 0;
@@ -10,60 +8,24 @@
   z-index: $menuZIndex;
   overflow-y: auto;
 
+  @media (max-width: $maxMobile) {
+    padding: 15px 20px;
+  }
+
   &__container {
     @media (max-width: $maxMobile) {
       padding: 0;
     }
   }
 
-  &__wrapper {
-    &:not(:last-child) {
-      border-bottom: $menuBorderStyle;
-    }
-    &+& {
-      margin-top: 16px;
-    }
-  }
-
-  &__title {
-    @media (max-width: $maxMobile) {
-      font-weight: 700;
-      font-size: 16px;
-      text-align: center;
-    }
-  }
-
-  &__content {
-    @media (max-width: $maxMobile) {
-      &--alco {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        justify-content: center;
-      }
-      &--info {
-        margin-top: 16px;
-      }
-    }
-  }
-
-  &__link {
-    @media (max-width: $maxMobile) {
-      display: block;
-      text-align: center;
-      &+& {
-        margin-top: 18px;
-      }
-    }
-  }
-
   @media (min-width: $tablet) {
+    padding-top: 40px;
+    padding-bottom: 40px;
     bottom: auto;
     left: auto;
     right: auto;
     margin: 0 auto;
     width: 100%;
-    padding-left: $containerPaddingTablet;
-    padding-right: $containerPaddingTablet;
+    box-shadow: $shadowHard;
   }
 }

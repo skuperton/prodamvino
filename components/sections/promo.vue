@@ -11,7 +11,7 @@
               :icon="['fas', 'calendar-days']"
             )
             p Только в июне
-          img.__image.--mobile(
+          nuxt-img.__image.--mobile(
             height="200"
             width="200"
             src="images/alcohol/banner.png"
@@ -29,7 +29,7 @@
             data-aos-delay="100"
           ) Рассчитать
         .__right
-          img.__image.--desktop(
+          nuxt-img.__image.--desktop(
             height="600"
             width="600"
             data-aos="fade-left"

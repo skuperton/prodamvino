@@ -1,0 +1,31 @@
+.deal-step {
+  padding: 15px 10px;
+  box-shadow: $shadowEasy;
+  border-radius: $cardBorderRadius;
+  &__head {
+    padding: 0 10px;
+  }
+  &__number {
+    display: inline-block;
+    margin-right: 20px;
+    font-weight: 600;
+    font-size: 20px;
+    color: $primaryColor;
+  }
+  &__title {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  &.is-disabled {
+    box-shadow: none;
+    background-color: $grayLightColor;
+    & .deal-step {
+      &__number,
+      &__title {
+        color: $grayDarkColor;
+      }
+    }
+  }
+}

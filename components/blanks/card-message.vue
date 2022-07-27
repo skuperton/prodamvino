@@ -2,7 +2,7 @@
   .b-card-message
     .__header
       .__information
-        img.__avatar(
+        nuxt-img.__avatar(
           height="40"
           width="40"
           src="images/users/avatar.png"

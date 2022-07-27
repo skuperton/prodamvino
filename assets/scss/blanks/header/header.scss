@@ -2,12 +2,12 @@
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
+  right: -1px;
 	background: #FFFFFF;
 	box-shadow: $shadow;
   z-index: $headerZIndex;
 
-  &.active {
+  &[data-active="true"] {
     & .header {
       &__container {
         &::before {
@@ -154,7 +154,6 @@
     }
 
     &__logotype {
-      cursor: pointer;
       svg {
         height: 40px;
         width: 78px;

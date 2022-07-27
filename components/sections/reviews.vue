@@ -30,7 +30,7 @@
         card-message-component.__message(
           v-for="(_,index) in 4"
           :key="index"
-          :data-aos-delay="300 + (index * 50)"
+          :data-aos-delay="400 + (index * 50)"
           data-aos-offset="100"
           data-aos="fade-up"
         )

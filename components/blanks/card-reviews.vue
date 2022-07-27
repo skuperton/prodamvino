@@ -45,19 +45,19 @@ export default class CardReviews extends Vue {
       filled: true
     },
     {
-      id: 1,
+      id: 2,
       filled: true
     },
     {
-      id: 1,
+      id: 3,
       filled: true
     },
     {
-      id: 1,
+      id: 4,
       filled: true
     },
     {
-      id: 1,
+      id: 5,
       filled: true
     }
   ]

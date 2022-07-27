@@ -1,7 +1,7 @@
 <template lang="pug">
   .b-collapse(
     v-on:click="toggleCollapse"
-    :class="{ 'is-active': isShowSlot }"
+    v-bind="{ 'data-active': isShowSlot }"
     :style="isTransition && 'overflow: hidden'"
   )
     .__head

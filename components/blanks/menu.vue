@@ -1,60 +1,43 @@
 <template lang="pug">
   .b-menu(
-    :style="{'top': `${indent}px`}"
+    :style="{'top': `${indent}px`, 'bottom': isMobile && currentContent === 'mobile' ? 0 : 'auto'}"
     data-scroll-lock-scrollable
   )
     .container.__container
-      template(
-        v-if="isMobile"
+      transition(
+        name="fade-fast"
+        mode="out-in"
       )
-        template(
-          v-if="currentContent === 'contact'"
-        )
-          p contact
-        template(
+        mobile-layout-component(
           v-if="currentContent === 'mobile'"
+          key="mobile"
         )
-          .__wrapper
-            h2.__title Виды алкоголя
-            .__content.--alco
-              card-product-component(
-                v-for="product in products"
-                :key="product.id"
-                :img-name="product.imageName"
-                :name="product.name"
-                :shadow="false"
-                size="s"
-              )
-          .__wrapper
-            h2.__title Информация
-            .__content.--info
-              link-component.__link(
-                v-for="link in links"
-                :key="link.id"
-                :href="link.href"
-                view="secondary"
-              ) {{link.name}}
-      template(
-        v-else
-      )
-        template(
+        types-layout-component.__content(
           v-if="currentContent === 'types'"
+          :products="products"
+          title="Виды алкоголя"
+          key="types"
         )
-          p types
-        template(
+        information-layout-component.__content(
           v-if="currentContent === 'information'"
+          :links="links"
+          title="Информация"
+          key="Информация"
         )
-          p info
-        template(
+        contact-layout-component(
           v-if="currentContent === 'contact'"
+          key="contact"
         )
-          p contact
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import CardProduct from '~/components/blanks/card-product.vue'
 import Link from '~/components/ui/link.vue'
+import Mobile from '~/components/blanks/menu-layouts/mobile.vue'
+import Types from '~/components/blanks/menu-layouts/types.vue'
+import Information from '~/components/blanks/menu-layouts/information.vue'
+import Contact from '~/components/blanks/menu-layouts/contact.vue'
 
 export interface IMenu {
   currentContent: 'mobile' | 'types' | 'information' | 'contact'
@@ -63,6 +46,10 @@ export interface IMenu {
 
 @Component({
   components: {
+    'contact-layout-component': Contact,
+    'types-layout-component': Types,
+    'information-layout-component': Information,
+    'mobile-layout-component': Mobile,
     'card-product-component': CardProduct,
     'link-component': Link
   }
@@ -124,11 +111,65 @@ export default class Menu extends Vue {
       id: 5,
       name: 'Алкоголь оптом',
       href: '#'
+    },
+    {
+      id: 6,
+      name: 'Алкоголь оптом',
+      href: '#'
+    },
+    {
+      id: 7,
+      name: 'Алкоголь оптом и в розницу',
+      href: '#'
+    },
+    {
+      id: 8,
+      name: 'Алкоголь оптом',
+      href: '#'
+    },
+    {
+      id: 9,
+      name: 'Алкоголь оптом и в розницу',
+      href: '#'
+    },
+    {
+      id: 10,
+      name: 'Алкоголь оптом',
+      href: '#'
+    },
+    {
+      id: 11,
+      name: 'Алкоголь оптом',
+      href: '#'
+    },
+    {
+      id: 12,
+      name: 'Алкоголь оптом и в розницу',
+      href: '#'
+    },
+    {
+      id: 13,
+      name: 'Алкоголь оптом',
+      href: '#'
+    },
+    {
+      id: 14,
+      name: 'Алкоголь оптом и в розницу',
+      href: '#'
+    },
+    {
+      id: 15,
+      name: 'Алкоголь оптом',
+      href: '#'
     }
   ]
 
   get isMobile () {
     return this.$device.isMobile
+  }
+
+  get isMobileOrTablet () {
+    return this.$device.isMobileOrTablet
   }
 
   mounted () {

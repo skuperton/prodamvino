@@ -1,0 +1,53 @@
+.information-layout {
+  &__title {
+    @media (max-width: $maxMobile) {
+      font-weight: 700;
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+
+  &__content {
+    @media (max-width: $maxMobile) {
+      margin-top: 16px;
+    }
+  }
+
+  &__link {
+    @media (max-width: $maxMobile) {
+      display: block;
+      text-align: center;
+      &+& {
+        margin-top: 18px;
+      }
+    }
+  }
+
+  @media (min-width: $tablet) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    &__content {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-column-gap: 100px;
+      grid-row-gap: 10px;
+    }
+    &__link {
+      font-size: 16px;
+      line-height: 150%;
+    }
+  }
+
+  @media (min-width: $desktop) {
+    &__link {
+      font-size: 20px;
+    }
+
+    &__content {
+      grid-row-gap: 15px;
+    }
+  }
+}

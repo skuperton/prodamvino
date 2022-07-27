@@ -1,8 +1,17 @@
 @import "header/header";
 @import "menu/menu";
+@import "menu-layouts/mobile";
+@import "menu-layouts/contact";
+@import "menu-layouts/information";
 @import "card-product/card-product";
+@import "menu-layouts/types";
 @import "card-step/card-step";
 @import "card-reviews/card-reviews";
 @import "card-message/card-message";
 @import "appraiser/appraiser";
+@import "overlay/overlay";
+@import "callback/callback";
+@import "social/social";
+@import "trade/trade";
+@import "deal-step/deal-step";
 @import "footer/footer";

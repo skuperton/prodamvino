@@ -16,6 +16,8 @@ export default {
     ]
   },
 
+  target: 'static',
+
   // Global name
   globalName: 'prodamVino',
   globals: {
@@ -27,7 +29,8 @@ export default {
   fontawesome: {
     icons: {
       solid: true,
-      regular: true
+      regular: true,
+      brands: true
     }
   },
 
@@ -36,7 +39,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '@/plugins/aos', mode: 'client' },
+    // { src: '@/plugins/aos', mode: 'client', ssr: false },
     { src: '@/plugins/scroll-lock', mode: 'client' },
     '~/plugins/clickaway'
   ],
@@ -62,6 +65,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
+    '@nuxt/image',
     '@nuxtjs/axios'
   ],
 

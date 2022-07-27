@@ -1,6 +1,12 @@
 .products {
   padding-bottom: 25px;
 
+  &__title {
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
   &__wrapper {
     white-space: nowrap;
     overflow-x: scroll;
@@ -15,6 +21,10 @@
   }
 
   @media (min-width: $tablet) {
+    &__title {
+      font-size: 46px;
+      margin-bottom: 35px;
+    }
     &__wrapper {
       padding: 4px 40px 20px;
       margin: -4px -40px 0;

@@ -3,7 +3,7 @@
     :style="shadow ? {'box-shadow': '0 2px 10px rgba(0, 0, 0, 0.1)'} : ''"
     :class="classes"
   )
-    img.__image(
+    nuxt-img.__image(
       height="123"
       width="110"
       :src="`images/alcohol/${imgName}.svg`"

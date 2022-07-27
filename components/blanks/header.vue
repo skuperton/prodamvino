@@ -1,36 +1,43 @@
 <template lang="pug">
   header.b-header(
-    :class="classes"
+    data-aos="fade"
+    data-aos-delay="100"
+    data-aos-offset="0"
+    data-aos-once="true"
+    data-aos-mirror="false"
     ref="header"
     v-on-clickaway="hideMenu"
     v-on:keyup.esc="hideMenu"
+    v-bind="classes"
   )
-    transition(
-      name="fade-up"
-      mode="out-in"
+    .__plug(
+      v-show="!isShowPlug"
+      ref="plug"
     )
-      .__plug(
-        v-show="!isShowPlug"
-        ref="plug"
-      )
     .container.__container
       .__product
-        logotype-component.__logotype
+        nuxt-link(
+          to="/"
+        )
+          logotype-component.__logotype
         span.__tagline {{tagline}}
       .__navigation
         link-component.__dropdown(
+          :active="isDisableTypes"
           tag="button"
           view="secondary"
           iconName="angle-down"
           @click="toggleMenuContent('types')"
         ) Виды алкоголя
         link-component.__dropdown(
+          :active="isDisableInfo"
           tag="button"
           view="secondary"
           iconName="angle-down"
           @click="toggleMenuContent('information')"
         ) Информация
         button-component.__button(
+          :disabled="isActiveButton"
           shadow="box"
           view="secondary"
           icon-name="phone"
@@ -45,14 +52,20 @@
           span
           span
     transition(
-      name="fade"
+      name="fade-up"
       mode="out-in"
     )
       menu-component.__menu(
         v-if="menuActive"
         :current-content="menuContent"
-        :indent="$refs.header.clientHeight"
+        :indent="headerHeight"
+        key="menu"
       )
+    overlay-component(
+      v-if="menuActive"
+      :indent="headerHeight"
+      key="overlay"
+    )
 </template>
 
 <script lang="ts">
@@ -61,9 +74,12 @@ import Logotype from '~/components/ui/logotype.vue'
 import Menu, { IMenu } from '~/components/blanks/menu.vue'
 import Button from '~/components/ui/button.vue'
 import Link from '~/components/ui/link.vue'
+import { Maybe } from '~/ts/other'
+import Overlay from '~/components/blanks/overlay.vue'
 
 @Component({
   components: {
+    'overlay-component': Overlay,
     'link-component': Link,
     'button-component': Button,
     'logotype-component': Logotype,
@@ -73,8 +89,10 @@ import Link from '~/components/ui/link.vue'
 export default class Header extends Vue {
   tagline = 'Купим дорого \n ваш алкоголь'
 
+  headerHeight: Maybe<number> = null
+
   menuActive = false
-  menuContent: IMenu['currentContent'] | string = ''
+  menuContent: Maybe<IMenu['currentContent']> = null
   burgerMenuActive = false
 
   isShowPlug = false
@@ -96,7 +114,9 @@ export default class Header extends Vue {
   }
 
   onResize () {
+    this.onChangeHeaderHeight()
     this.menuActive = false
+    this.burgerMenuActive = false
   }
 
   toggleMenu () {
@@ -118,16 +138,25 @@ export default class Header extends Vue {
 
   addEvents (): void {
     window.addEventListener('scroll', this.onScroll, { passive: true })
+    window.addEventListener('scroll', this.onChangeHeaderHeight, { passive: true })
     window.addEventListener('resize', this.onResize, { passive: true })
   }
 
   removeEvents (): void {
     window.removeEventListener('scroll', this.onScroll)
+    window.removeEventListener('scroll', this.onChangeHeaderHeight)
     window.removeEventListener('resize', this.onResize)
   }
 
   onScroll (): void {
     this.setIsShowPlug()
+  }
+
+  onChangeHeaderHeight () {
+    requestAnimationFrame(() => {
+      // @ts-ignore
+      this.headerHeight = this.$refs.header?.clientHeight
+    })
   }
 
   getScroll (): number | boolean {
@@ -148,10 +177,23 @@ export default class Header extends Vue {
   }
 
   get classes () {
-    return this.menuActive ? ['active'] : ''
+    return { 'data-active': this.menuActive }
+  }
+
+  get isActiveButton () {
+    return this.menuActive && this.menuContent === 'contact'
+  }
+
+  get isDisableTypes () {
+    return this.menuActive && this.menuContent === 'types'
+  }
+
+  get isDisableInfo () {
+    return this.menuActive && this.menuContent === 'information'
   }
 
   mounted () {
+    this.onChangeHeaderHeight()
     this.addEvents()
     this.setIsShowPlug()
   }

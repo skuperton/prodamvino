@@ -1,0 +1,32 @@
+.trade {
+  &__preview {
+    margin-bottom: 20px;
+  }
+  &__image {
+    padding: 10px;
+    background-color: $secondaryBackground;
+    box-shadow: $shadowEasy;
+    border-radius: $cardBorderRadius;
+  }
+
+  &__border {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: $inputBorderStyle;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    img {
+      width: 110px;
+      height: 125px;
+      object-fit: contain;
+    }
+  }
+
+  &__step {
+    &+& {
+      margin-top: 20px;
+    }
+  }
+}

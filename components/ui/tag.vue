@@ -1,6 +1,6 @@
 <template lang="pug">
   .b-tag
-    img.__image(
+    nuxt-img.__image(
       v-if="imgName"
       :src="`images/alcohol/${imgName}-min.svg`"
     )

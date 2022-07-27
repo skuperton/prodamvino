@@ -4,9 +4,9 @@
   )
     .__wrapper
       font-awesome-icon.__star(
-        v-for="star in stars"
+        v-for="(star, index) in stars"
         :icon="star.filled ? ['fas', 'star'] : ['far', 'star']"
-        :key="star.id"
+        :key="star.id + index"
       )
 </template>
 

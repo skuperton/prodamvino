@@ -1,6 +1,6 @@
 <template lang="pug">
   .b-appraiser
-    img.__image(
+    nuxt-img.__image(
       v-if="name"
       :src="`images/appraiser/${name}.svg`"
     )
