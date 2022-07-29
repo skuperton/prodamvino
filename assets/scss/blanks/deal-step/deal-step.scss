@@ -1,9 +1,10 @@
 .deal-step {
-  padding: 15px 10px;
+  padding: 15px 15px;
   box-shadow: $shadowEasy;
   border-radius: $cardBorderRadius;
-  &__head {
-    padding: 0 10px;
+  background-color: $secondaryBackground;
+  &__body {
+    margin-top: 10px;
   }
   &__number {
     display: inline-block;
@@ -26,6 +27,52 @@
       &__title {
         color: $grayDarkColor;
       }
+    }
+  }
+
+  @media (min-width: $tablet) {
+    padding: 20px 15px;
+  }
+
+  @media (min-width: $tabletLate) {
+    padding: 30px 20px;
+
+    &__head {
+      padding: 0;
+    }
+
+    &__body {
+      margin-top: 20px;
+    }
+
+    &__number {
+      margin-right: 20px;
+    }
+
+    &__title,
+    &__number {
+      font-size: 26px;
+    }
+  }
+
+  @media (min-width: $desktop) {
+    padding: 40px 30px;
+
+    &__head {
+      padding: 0;
+    }
+
+    &__body {
+      margin-top: 30px;
+    }
+
+    &__number {
+      margin-right: 30px;
+    }
+
+    &__title,
+    &__number {
+      font-size: 36px;
     }
   }
 }

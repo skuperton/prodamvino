@@ -47,6 +47,38 @@
     color: $primaryColor;
   }
 
+  @media (min-width: $tablet) {
+    padding: 36px 40px;
+
+    &__avatar {
+      margin-right: 15px;
+      width: 45px;
+      height: 45px;
+    }
+
+    &__name {
+      font-size: 16px;
+    }
+
+    &__date {
+      font-size: 12px;
+    }
+
+    &__header {
+      margin-bottom: 25px;
+    }
+
+    &__content {
+      margin-bottom: 15px;
+      font-size: 16px;
+      -webkit-line-clamp: 3;
+    }
+
+    &__link {
+      font-size: 16px;
+    }
+  }
+
   @media (min-width: $desktop) {
     padding: 46px 50px;
 
@@ -71,7 +103,6 @@
     &__content {
       margin-bottom: 20px;
       font-size: 20px;
-      -webkit-line-clamp: 3;
     }
 
     &__link {

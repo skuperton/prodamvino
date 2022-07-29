@@ -1,7 +1,11 @@
 <template lang="pug">
   .b-sale
     header-component
-    Nuxt
+    transition(
+      name="fade"
+      mode="out-in"
+    )
+      Nuxt
     reviews-component
     products-component(
       title="Продать другие напитки"
@@ -19,11 +23,16 @@
   @media (min-width: 650px) {
     padding-top: 140px;
   }
+
+  @media (min-width: 1200px) {
+    padding-top: 160px;
+  }
 }
 </style>
 <script>
 import Vue from 'vue'
 import { Component } from 'nuxt-property-decorator'
+import AOS from 'aos'
 import Reviews from '@/components/sections/reviews'
 import Products from '@/components/sections/products'
 import Questions from '@/components/sections/questions'
@@ -31,7 +40,6 @@ import Steps from '@/components/sections/steps'
 import Popularity from '@/components/sections/popularity'
 import Header from '@/components/blanks/header'
 import Footer from '@/components/blanks/footer'
-import AOS from 'aos'
 import getOs from '@/ts/getOs'
 
 @Component({
@@ -50,7 +58,7 @@ export default class SellingLayout extends Vue {
     AOS.init({
       // Global settings
       startEvent: 'DOMContentLoaded',
-      disable: window.innerWidth < 1200 || this.$route.path !== '/',
+      disable: window.innerWidth < 1200,
 
       // Settings that can be overridden
       offset: 150,

@@ -34,14 +34,16 @@
           data-aos-offset="100"
           data-aos="fade-up"
         )
-      button-component.__button(
-        icon-name="location-dot"
-        view="secondary"
-        shadow="box"
-        aria-label="Больше отзывов на Яндекс Картах"
+      div(
         data-aos="fade-up"
         data-aos-delay="100"
-      ) Больше отзывов на Яндекс Картах
+      )
+        button-component.__button(
+          icon-name="location-dot"
+          view="secondary"
+          shadow="box"
+          aria-label="Больше отзывов на Яндекс Картах"
+        ) Больше отзывов на Яндекс Картах
 </template>
 
 <script lang="ts">

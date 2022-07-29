@@ -1,9 +1,14 @@
 <template lang="pug">
   section.b-selling
     .container.__container
-      h2.__title Продать {{titleName}}
+      h2.__title(
+        data-aos="fade-right"
+        data-aos-delay="100"
+      ) Продать {{titleName}}
       trade-component.__trade(
         :image-name="imageName"
+        data-aos="fade"
+        data-aos-delay="200"
       )
 </template>
 
@@ -11,6 +16,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import { NuxtOptions } from '@nuxt/types'
 import Trade from '~/components/blanks/trade.vue'
+import AOS from 'aos'
 
 const productNames = {
   vino: {
@@ -41,7 +47,7 @@ const productNames = {
   },
   layout: 'selling'
 })
-export default class extends Vue {
+export default class SellingName extends Vue {
   validate ({ params }: NuxtOptions) {
     if (params) {
       return Object.entries(productNames).some(item => item.includes(params.name))
@@ -61,6 +67,10 @@ export default class extends Vue {
   get imageName () {
     const name = this.currentProduct
     return name ? name.imgName : ''
+  }
+
+  mounted () {
+    AOS.init()
   }
 }
 </script>

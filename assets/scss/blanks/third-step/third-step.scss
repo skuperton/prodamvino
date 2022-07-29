@@ -1,0 +1,156 @@
+.third-step {
+  &__field {
+    padding: 15px 0;
+    position: relative;
+
+    @media (max-width: $maxMobile) {
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -15px;
+        right: -15px;
+        height: 1px;
+        background-color: $grayLightColor;
+      }
+    }
+  }
+  &__label {
+    color: $secondaryColor;
+    opacity: 0.5;
+  }
+
+  &__pay{
+    margin-bottom: 4px;
+  }
+
+  &__text {
+    @media (max-width: $maxMobile) {
+      margin-top: 4px;
+    }
+  }
+
+  &__promo {
+    padding: 15px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $redLightBackground;
+    margin-bottom: 15px;
+  }
+
+  &__price {
+    font-weight: 600;
+    font-size: 30px;
+    margin-bottom: 8px;
+  }
+
+  &__descr {
+    font-size: 11px;
+    color: $primaryColor;
+    opacity: 0.4;
+
+    &+& {
+      margin-top: 4px;
+    }
+  }
+
+  &__button{
+    display: block;
+    margin: 0 auto;
+  }
+
+  @media (min-width: $tablet) {
+    &__field {
+      padding: 18px;
+      border-top: $inputBorderStyle;
+
+      &--clear {
+        padding: 40px 0 0;
+      }
+    }
+
+    &__text {
+      display: inline-block;
+      font-size: 14px;
+    }
+
+    &__pay{
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    &__price {
+      font-size: 45px;
+      margin-bottom: 15px;
+    }
+
+    &__label {
+      width: 50%;
+      display: inline-block;
+      font-size: 14px;
+    }
+
+    &__promo {
+      padding: 25px 25px;
+      margin-bottom: 25px;
+    }
+
+    &__descr {
+      font-size: 16px;
+
+      &+& {
+        margin-top: 8px;
+      }
+    }
+
+    &__button{
+      font-size: 16px;
+    }
+  }
+
+  @media (min-width: $desktop) {
+    &__field {
+      padding: 20px;
+
+      &--clear {
+        padding-top: 50px;
+      }
+    }
+
+    &__text {
+      font-size: 20px;
+    }
+
+    &__pay{
+      margin-bottom: 30px;
+      font-size: 26px;
+    }
+
+    &__price {
+      font-size: 65px;
+      margin-bottom: 30px;
+    }
+    &__label {
+      font-size: 20px;
+    }
+
+    &__promo {
+      padding: 38px 20px;
+      margin-bottom: 35px;
+    }
+
+    &__descr {
+      font-size: 20px;
+
+      &+& {
+        margin-top: 8px;
+      }
+    }
+
+    &__button{
+      font-size: 20px;
+    }
+  }
+}

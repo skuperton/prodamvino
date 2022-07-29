@@ -4,7 +4,7 @@
     data-aos-delay="100"
     data-aos-once="true"
     data-aos-mirror="false"
-    data-aos-offset="0"
+    data-aos-offset="50"
   )
     .container.__container
       .__left

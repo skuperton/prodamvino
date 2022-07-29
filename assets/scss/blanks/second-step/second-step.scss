@@ -1,0 +1,67 @@
+.second-step {
+  &__label {
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+
+  &__select {
+    -webkit-appearance: none;
+    font-family: inherit;
+    position: relative;
+    padding: 8px 10px;
+    width: 100%;
+    font-size: 16px;
+    border: $inputBorderStyle;
+    background-color: $mainBackground;
+    cursor: pointer;
+    color: $secondaryColor;
+
+    &:required:invalid {
+      color: #5A667F
+    }
+  }
+
+  &__option {
+    transition-property: color;
+    transition-duration: .2s;
+    transition-timing-function: ease;
+
+    &[value=''][disabled] {
+      display: none;
+    }
+    &:hover {
+      color: $primaryColor;
+    }
+  }
+
+  &__sprites {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+  @media (min-width: $tablet) {
+    &__label {
+      font-size: 12px;
+      margin-bottom: 15px;
+    }
+
+    &__select {
+      padding: 15px;
+      font-size: 22px;
+    }
+  }
+
+  @media (min-width: $desktop) {
+    &__label {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    &__select {
+      padding: 20px;
+      //font-size: 26px;
+    }
+  }
+}

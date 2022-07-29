@@ -1,6 +1,8 @@
 .trade {
   &__preview {
-    margin-bottom: 20px;
+    @media (max-width: $maxMobile) {
+      margin-bottom: 20px;
+    }
   }
   &__image {
     padding: 10px;
@@ -16,17 +18,45 @@
     border: $inputBorderStyle;
     padding-top: 20px;
     padding-bottom: 20px;
+    box-sizing: border-box;
 
     img {
-      width: 110px;
-      height: 125px;
-      object-fit: contain;
+      max-width: 280px;
     }
   }
 
   &__step {
     &+& {
       margin-top: 20px;
+    }
+  }
+
+  @media (min-width: $tablet) {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+
+    &__image {
+      img {
+        width: 100%;
+        padding: 20px 40px;
+      }
+    }
+
+    &__first {
+      width: 420px;
+    }
+
+    &__second {
+      flex-grow: 1;
+    }
+
+    @media (min-width: $desktop) {
+      gap: 50px;
+
+      &__first {
+        width: 520px;
+      }
     }
   }
 }

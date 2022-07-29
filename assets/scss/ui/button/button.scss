@@ -19,7 +19,7 @@
     margin-right: 10px;
     transition-duration: .2s;
     transition-timing-function: ease;
-    transition-property: color, opacity;
+    transition-property: color;
   }
 
   &--size {
@@ -41,15 +41,15 @@
       background-color: $primaryBackground;
       color: $whiteColor ;
 
-      @media (min-width: $tabletLate) {
-        &:hover {
-          background-color: #842338;
-        }
-      }
-
       & .button{
         &__icon {
           color: $whiteColor;
+        }
+      }
+
+      @media (min-width: $tabletLate) {
+        &:hover {
+          background-color: #842338;
         }
       }
     }
@@ -57,22 +57,22 @@
       background-color: $secondaryBackground;
       color: $secondaryColor;
 
-      @media (min-width: $tabletLate) {
-        &:hover {
-          background-color: #FFDADA;
-          color: $primaryColor;
-
-          & .button{
-            &__icon {
-              color: $primaryColor;
-            }
-          }
-        }
-      }
-
       & .button{
         &__icon {
           color: $primaryColor;
+        }
+      }
+
+      @media (min-width: $tabletLate) {
+        &:hover {
+          background-color: $secondaryBackground;
+          color: #929393;
+
+          & .button{
+            &__icon {
+              color: #CF93A0;
+            }
+          }
         }
       }
     }

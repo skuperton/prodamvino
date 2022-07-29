@@ -60,6 +60,7 @@
         :current-content="menuContent"
         :indent="headerHeight"
         key="menu"
+        @clicked="productTypeSelected($event)"
       )
     overlay-component(
       v-if="menuActive"
@@ -174,6 +175,12 @@ export default class Header extends Vue {
     } else {
       return false
     }
+  }
+
+  productTypeSelected (e: Event) {
+    console.log(e, 'EVENT')
+    this.burgerMenuActive = false
+    this.menuActive = false
   }
 
   get classes () {

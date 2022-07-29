@@ -20,14 +20,16 @@
             data-aos="fade-right"
             data-aos-delay="200"
           ) Купим ваш Macallan 12 на 20% дороже
-          button-component.__button(
-            size="l"
-            view="secondary"
-            aria-label="Рассчитать"
+          div(
             data-aos="fade"
             data-aos-offset="200"
             data-aos-delay="100"
-          ) Рассчитать
+          )
+            button-component.__button(
+              size="l"
+              view="secondary"
+              aria-label="Рассчитать"
+            ) Рассчитать
         .__right
           nuxt-img.__image.--desktop(
             height="600"

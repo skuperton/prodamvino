@@ -4,6 +4,10 @@
   position: relative;
   transition: opacity 0.3s ease;
 
+  &[type="button"] {
+    cursor: pointer;
+  }
+
   &__icon {
     font-size: inherit;
     padding-left: 8px;

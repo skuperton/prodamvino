@@ -3,15 +3,20 @@
     h2.__title(
       v-if="title && isMobile"
     ) {{title}}
-    .__content
-      card-product-component.__product(
+    .__content(
+      @click="$emit('clicked', $event)"
+    )
+      NuxtLink.__card(
         v-for="product in products"
         :key="product.id"
-        :img-name="product.imageName"
-        :name="product.name"
-        :shadow="false"
-        size="s"
+        :to="product.to"
       )
+        card-product-component.__product(
+          :img-name="product.imageName"
+          :name="product.name"
+          :shadow="false"
+          size="s"
+        )
 </template>
 
 <script lang="ts">
@@ -24,6 +29,7 @@ export interface ITypes {
     id: number
     imageName: string
     name: string
+    to: string
   }[]
 }
 
