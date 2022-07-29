@@ -16,7 +16,7 @@ export default {
     ]
   },
 
-  target: 'static',
+  target: 'server',
 
   // Global name
   globalName: 'prodamVino',
