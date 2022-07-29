@@ -8,7 +8,7 @@
       .__wrapper
         nuxt-img.__card(
           v-for="(card, index) in cards"
-          :src="`images/popularity/${card.imgName}.png`"
+          :src="`/images/popularity/${card.imgName}.png`"
           :key="card.id"
           :data-aos-delay="150+(index*100)"
           data-aos="fade"

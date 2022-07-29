@@ -2,7 +2,7 @@
   .b-appraiser
     nuxt-img.__image(
       v-if="name"
-      :src="`images/appraiser/${name}.svg`"
+      :src="`/images/appraiser/${name}.svg`"
     )
     .__rating
       span {{rate}}

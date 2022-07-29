@@ -60,7 +60,8 @@
         :current-content="menuContent"
         :indent="headerHeight"
         key="menu"
-        @clicked="productTypeSelected($event)"
+        @clickedMobile="productTypeSelected"
+        @clicked="productTypeSelected"
       )
     overlay-component(
       v-if="menuActive"
@@ -177,10 +178,12 @@ export default class Header extends Vue {
     }
   }
 
-  productTypeSelected (e: Event) {
-    console.log(e, 'EVENT')
+  productTypeSelected () {
     this.burgerMenuActive = false
     this.menuActive = false
+
+    // @ts-ignore
+    this.$scrollTo('body')
   }
 
   get classes () {

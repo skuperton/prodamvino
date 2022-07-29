@@ -6,7 +6,7 @@
     nuxt-img.__image(
       height="123"
       width="110"
-      :src="`images/alcohol/${imgName}.svg`"
+      :src="`/images/alcohol/${imgName}.svg`"
     )
     p.__name {{name}}
 </template>

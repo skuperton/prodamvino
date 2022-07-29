@@ -3,13 +3,12 @@
     h2.__title(
       v-if="title && isMobile"
     ) {{title}}
-    .__content(
-      @click="$emit('clicked', $event)"
-    )
+    .__content
       NuxtLink.__card(
         v-for="product in products"
         :key="product.id"
         :to="product.to"
+        v-on:click.native="$emit('clicked', $event)"
       )
         card-product-component.__product(
           :img-name="product.imageName"

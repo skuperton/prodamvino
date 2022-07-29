@@ -11,6 +11,7 @@
         mobile-layout-component(
           v-if="currentContent === 'mobile'"
           key="mobile"
+          @clickedMobile="$emit('clickedMobile', $event)"
         )
         types-layout-component.__content(
           v-if="currentContent === 'types'"

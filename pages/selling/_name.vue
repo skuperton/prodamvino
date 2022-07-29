@@ -15,8 +15,8 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { NuxtOptions } from '@nuxt/types'
-import Trade from '~/components/blanks/trade.vue'
 import AOS from 'aos'
+import Trade from '~/components/blanks/trade.vue'
 
 const productNames = {
   vino: {
@@ -71,6 +71,10 @@ export default class SellingName extends Vue {
 
   mounted () {
     AOS.init()
+  }
+
+  beforeDestroy () {
+    AOS.refreshHard()
   }
 }
 </script>

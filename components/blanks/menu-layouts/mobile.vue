@@ -3,6 +3,7 @@
     types-layout-component.__content(
       :products="products"
       title="Виды алкоголя"
+      @clicked="$emit('clickedMobile', $event)"
     )
     information-layout-component.__content(
       :links="links"

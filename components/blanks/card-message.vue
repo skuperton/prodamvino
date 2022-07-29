@@ -5,7 +5,7 @@
         nuxt-img.__avatar(
           height="40"
           width="40"
-          src="images/users/avatar.png"
+          src="/images/users/avatar.png"
         )
         .__persone
           p.__name Роман П.

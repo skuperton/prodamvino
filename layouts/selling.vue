@@ -67,10 +67,11 @@ export default class SellingLayout extends Vue {
       mirror: false,
       once: true
     })
-    window.onbeforeunload = () => {
-      window.scrollTo(0, 0)
-    }
+
     document.documentElement.classList.add(`os-${getOs()}`)
+
+    // @ts-ignore
+    this.$scrollTo('body')
   }
 
   beforeDestroy () {

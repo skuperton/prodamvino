@@ -66,7 +66,15 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxt/image',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    ['vue-scrollto/nuxt', [{
+      container: 'body',
+      duration: 500,
+      easing: 'ease',
+      offset: 0,
+      force: true,
+      cancelable: true
+    }]]
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

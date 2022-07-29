@@ -2,7 +2,7 @@
   .b-tag
     nuxt-img.__image(
       v-if="imgName"
-      :src="`images/alcohol/${imgName}-min.svg`"
+      :src="`/images/alcohol/${imgName}-min.svg`"
     )
     p.__text {{name}}
 </template>

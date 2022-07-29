@@ -8,7 +8,7 @@
         .__image
           .__border
             nuxt-img(
-              :src="`images/alcohol/${imageName}.svg`"
+              :src="`/images/alcohol/${imageName}.svg`"
             )
     .__second
       .__content
