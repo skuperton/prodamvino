@@ -11,6 +11,7 @@
           v-for="product in products"
           :key="product.id"
           :to="product.to"
+          v-on:click.native="goToTop"
         )
           card-product-component(
             :img-name="product.imageName"
@@ -64,5 +65,10 @@ export default class Products extends Vue {
       to: '/selling/shamp'
     }
   ]
+
+  goToTop () {
+    // @ts-ignore
+    this.$scrollTo('body')
+  }
 }
 </script>

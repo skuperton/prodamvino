@@ -18,6 +18,7 @@
       .__product
         nuxt-link(
           to="/"
+          v-on:click.native="goToTop"
         )
           logotype-component.__logotype
         span.__tagline {{tagline}}
@@ -176,6 +177,11 @@ export default class Header extends Vue {
     } else {
       return false
     }
+  }
+
+  goToTop () {
+    // @ts-ignore
+    this.$scrollTo('body')
   }
 
   productTypeSelected () {
