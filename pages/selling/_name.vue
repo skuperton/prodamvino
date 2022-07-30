@@ -38,6 +38,10 @@ const productNames = {
   shamp: {
     title: 'шампанское',
     imgName: 'shamp'
+  },
+  pivo: {
+    title: 'пиво',
+    imgName: 'pivo'
   }
 }
 
@@ -50,12 +54,15 @@ const productNames = {
 export default class SellingName extends Vue {
   validate ({ params }: NuxtOptions) {
     if (params) {
-      return Object.entries(productNames).some(item => item.includes(params.name))
+      return Object.entries(productNames).some((item) => {
+        console.log(item)
+        return item[1].title === (params.name)
+      })
     }
   }
 
   get currentProduct () {
-    const current = Object.entries(productNames).find(([key]) => key === this.$route.params.name)
+    const current = Object.entries(productNames).find(product => product[1].title === this.$route.params.name)
     return current ? current[1] : ''
   }
 

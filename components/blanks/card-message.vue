@@ -3,26 +3,36 @@
     .__header
       .__information
         nuxt-img.__avatar(
+          v-if="avatar"
+          :src="avatar"
           height="40"
           width="40"
-          src="/images/users/avatar.png"
         )
         .__persone
-          p.__name Роман П.
-          span.__date 18 апреля
+          p.__name {{author}}
+          span.__date {{date}}
       .__rating
         rating-component.__stars(
-          :stars="stars"
+          :stars="currentStars"
         )
-    p.__content {{contentText}}
+    p.__content {{text}}
     a.__link(
       href="#"
     ) Далее...
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import Rating from '~/components/ui/rating.vue'
+
+export interface ICardMessage {
+  id: number
+  author: string
+  date: string
+  text: string
+  avatar: string
+  stars: number
+}
 
 @Component({
   components: {
@@ -30,29 +40,23 @@ import Rating from '~/components/ui/rating.vue'
   }
 })
 export default class CardMessage extends Vue {
-  stars = [
-    {
-      id: 1,
-      filled: true
-    },
-    {
-      id: 1,
-      filled: true
-    },
-    {
-      id: 1,
-      filled: true
-    },
-    {
-      id: 1,
-      filled: true
-    },
-    {
-      id: 1,
-      filled: true
-    }
-  ]
+  @Prop() author!: ICardMessage['author']
+  @Prop() date!: ICardMessage['date']
+  @Prop() text!: ICardMessage['text']
+  @Prop() avatar!: ICardMessage['avatar']
+  @Prop() stars!: ICardMessage['stars']
 
-  contentText = 'Выражаю огромную благодарность сервису ДамПродам за высокое качество и профессионализм в работе! Мне понравилось всё, начиная от общения с оператором по телефону и заканчивая продажей устройств. Особо хочу отметить вежливое, спокойное и уважительное отношение и к работе, и к клиен. Выражаю огромную благодарность сервису ДамПродам за высокое качество и профессионализм в работе! Мне понравилось всё, начиная от общения с оператором по телефону и заканчивая продажей устройств. Особо хочу отметить вежливое, спокойное и уважительное отношение и к работе, и к клиен'
+  get currentStars () {
+    const array = []
+    if (this.stars) {
+      for (let i = 1; i <= 5; i++) {
+        array.push({
+          id: i,
+          filled: this.stars >= i
+        })
+      }
+      return array
+    }
+  }
 }
 </script>

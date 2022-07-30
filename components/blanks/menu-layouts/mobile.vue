@@ -40,31 +40,31 @@ export default class Mobile extends Vue {
       id: 1,
       imageName: 'vine',
       name: 'Вино',
-      to: '/selling/vino'
+      to: '/selling/вино'
     },
     {
       id: 2,
       imageName: 'kon',
       name: 'Коньяк',
-      to: '/selling/kon'
+      to: '/selling/коньяк'
     },
     {
       id: 3,
       imageName: 'viski',
       name: 'Виски',
-      to: '/selling/viski'
+      to: '/selling/виски'
     },
     {
       id: 4,
       imageName: 'vodka',
       name: 'Водка',
-      to: '/selling/vodka'
+      to: '/selling/водка'
     },
     {
       id: 5,
       imageName: 'shamp',
       name: 'Шампанское',
-      to: '/selling/shamp'
+      to: '/selling/шампанское'
     }
   ]
 

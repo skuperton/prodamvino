@@ -33,38 +33,67 @@ import CardProduct from '~/components/blanks/card-product.vue'
 export default class Products extends Vue {
   @Prop() readonly title!: string
 
+  // products: {
+  //   id: number
+  //   name: string
+  //   imageName: string
+  //   to: string
+  // }[] = []
+
   products = [
     {
       id: 1,
       imageName: 'vine',
       name: 'Вино',
-      to: '/selling/vino'
+      to: '/selling/вино'
     },
     {
       id: 2,
       imageName: 'kon',
       name: 'Коньяк',
-      to: '/selling/kon'
+      to: '/selling/коньяк'
     },
     {
       id: 3,
       imageName: 'viski',
       name: 'Виски',
-      to: '/selling/viski'
+      to: '/selling/виски'
     },
     {
       id: 4,
       imageName: 'vodka',
       name: 'Водка',
-      to: '/selling/vodka'
+      to: '/selling/водка'
     },
     {
       id: 5,
       imageName: 'shamp',
       name: 'Шампанское',
-      to: '/selling/shamp'
+      to: '/selling/шампанское'
     }
   ]
+
+  // async fetch (this: Products) {
+  //   return await this.$axios.get('/alcohol/categories')
+  //     .then((response: {
+  //       data: {
+  //         id: number
+  //         author: string
+  //         image: string
+  //         name: string
+  //       }[]
+  //     }) => {
+  //       this.products = response.data.map((product) => {
+  //         return {
+  //           id: product.id,
+  //           name: product.name,
+  //           imageName: product.image,
+  //           to: `/selling/${product.name}`
+  //         }
+  //       })
+  //     })
+  //     .catch((error: any) => console.log(error))
+  // }
 
   goToTop () {
     // @ts-ignore

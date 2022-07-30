@@ -26,10 +26,17 @@
         data-aos="fade-up"
         data-aos-delay="400"
       )
-      .__wrapper
+      .__wrapper(
+        v-if="messages"
+      )
         card-message-component.__message(
-          v-for="(_,index) in 4"
-          :key="index"
+          v-for="(message,index) in messages"
+          :key="message.id"
+          :author="message.author"
+          :date="message.date"
+          :text="message.text"
+          :stars="message.stars"
+          :avatar="message.avatar"
           :data-aos-delay="400 + (index * 50)"
           data-aos-offset="100"
           data-aos="fade-up"
@@ -51,7 +58,17 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import Appraiser from '~/components/blanks/appraiser.vue'
 import CardReviews from '~/components/blanks/card-reviews.vue'
 import Button from '~/components/ui/button.vue'
-import CardMessage from '~/components/blanks/card-message.vue'
+import CardMessage, { ICardMessage } from '~/components/blanks/card-message.vue'
+
+export interface ProductResponse {
+  id: number
+  author: string
+  date_publiched: string
+  avatar: string
+  message: string
+  stars: number
+}
+
 @Component({
   components: {
     'card-message-component': CardMessage,
@@ -61,5 +78,23 @@ import CardMessage from '~/components/blanks/card-message.vue'
   }
 })
 export default class Reviews extends Vue {
+  messages: ICardMessage[] = []
+
+  async fetch (this: Reviews) {
+    return await this.$axios.get('/reviews')
+      .then((response: { data: ProductResponse[] }) => {
+        this.messages = response.data.map((message: ProductResponse) => {
+          return {
+            id: message.id,
+            author: message.author,
+            date: message.date_publiched,
+            avatar: message.avatar,
+            text: message.message,
+            stars: message.stars
+          }
+        })
+      })
+      .catch((error: any) => console.log(error))
+  }
 }
 </script>

@@ -10,16 +10,16 @@
             font-awesome-icon.__calendar(
               :icon="['fas', 'calendar-days']"
             )
-            p Только в июне
+            p '{{promo.month}}'
           nuxt-img.__image.--mobile(
+            src="images/alcohol/banner.png"
             height="200"
             width="200"
-            src="images/alcohol/banner.png"
           )
           h3.__title(
             data-aos="fade-right"
             data-aos-delay="200"
-          ) Купим ваш Macallan 12 на 20% дороже
+          ) {{promo.description}}
           div(
             data-aos="fade"
             data-aos-offset="200"
@@ -50,5 +50,24 @@ import Button from '~/components/ui/button.vue'
   }
 })
 export default class Promo extends Vue {
+  promo = {}
+
+  async fetch (this: Promo) {
+    return await this.$axios.get('/alcohol/offer')
+      .then((response: {
+        data: {
+          description: string
+          image: string
+          month: string
+        }
+      }) => {
+        this.promo = {
+          description: response.data.description ?? '',
+          image: response.data.image ?? '',
+          month: response.data.month ?? ''
+        }
+      })
+      .catch((error: any) => console.log(error))
+  }
 }
 </script>
