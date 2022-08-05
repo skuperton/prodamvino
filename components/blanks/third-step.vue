@@ -7,13 +7,16 @@
     )
       .__field(
         v-for="field in fields"
+        :key="field.id"
       )
         p.__label {{field.label}}
         p.__text {{field.text}}
       .__field.--clear
         .__promo
           p.__pay Мы заплатим за ваш алкоголь
-          p.__price 4 530 ₽
+          p.__price(
+            v-if="price"
+          ) {{price}} ₽
           p.__descr * Деньги сразу
           p.__descr * Бесплатный выезд
           p.__descr Выкупим за 90 минут
@@ -38,6 +41,7 @@ export interface IThirdStep {
     text: string
   }[]
   disable: boolean
+  price: number
 }
 
 @Component({
@@ -49,5 +53,6 @@ export interface IThirdStep {
 export default class ThirdStep extends Vue {
   @Prop() disable!: IThirdStep['disable']
   @Prop() fields!: IThirdStep['fields']
+  @Prop() price!: IThirdStep['price']
 }
 </script>

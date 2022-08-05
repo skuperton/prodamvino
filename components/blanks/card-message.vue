@@ -24,6 +24,8 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import Rating from '~/components/ui/rating.vue'
+import AOS from 'aos'
+import getOs from '~/ts/getOs'
 
 export interface ICardMessage {
   id: number
@@ -57,6 +59,21 @@ export default class CardMessage extends Vue {
       }
       return array
     }
+  }
+
+  mounted () {
+    AOS.init({
+      // Global settings
+      startEvent: 'DOMContentLoaded',
+      disable: window.innerWidth < 1200,
+
+      // Settings that can be overridden
+      offset: 150,
+      duration: 600,
+      easing: 'ease',
+      mirror: false,
+      once: true
+    })
   }
 }
 </script>

@@ -7,6 +7,7 @@
       ) Продать {{titleName}}
       trade-component.__trade(
         :image-name="imageName"
+        :current-category="titleName"
         data-aos="fade"
         data-aos-delay="200"
       )
@@ -77,7 +78,9 @@ export default class SellingName extends Vue {
   }
 
   mounted () {
-    AOS.init()
+    if (this.$device.isMobileOrTablet) {
+      AOS.init()
+    }
   }
 
   beforeDestroy () {

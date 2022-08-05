@@ -15,14 +15,17 @@
         first-step-component.__step(
           v-model="fields.first.value"
           :result-list="fields.first.resultList"
+          :choosed-list="fields.first.choosedList"
           :disable="fields.first.disable"
           data-aos="fade-up"
           data-aos-delay="500"
           data-aos-offset="0"
+          @input="onSearch"
+          @click="chooseProductName"
         )
         second-step-component.__step(
           v-model="fields.second.value"
-          :disable="!fields.first.value.length"
+          :disable="!fields.first.choosedList.length"
           :options="fields.second.options"
           data-aos="fade-up"
           data-aos-delay="600"
@@ -30,8 +33,9 @@
           @onChange="chooseYear"
         )
         third-step-component.__step(
-          :disable="!fields.second.value.length"
+          :disable="!fields.second.value"
           :fields="thirdStepFields"
+          :price="fields.third.price"
           data-aos="fade-up"
           data-aos-delay="700"
           data-aos-offset="0"
@@ -50,9 +54,15 @@ export type Fields = {
   first: {
     value: string,
     disable: boolean,
-    choosedList: string[],
-    resultList: {
+    choosedList: {
+      id: number
       name: string
+      active: boolean
+    }[],
+    resultList: {
+      id: number
+      name: string
+      active: boolean
     }[]
   },
   second: {
@@ -67,6 +77,7 @@ export type Fields = {
   },
   third: {
     value: string,
+    price: number,
     disable: boolean
   }
 }
@@ -81,23 +92,14 @@ export type Fields = {
 })
 export default class Trade extends Vue {
   @Prop() readonly imageName!: string
+  @Prop() readonly currentCategory!: string
 
   fields: Fields = {
     first: {
       value: '',
       disable: false,
       choosedList: [],
-      resultList: [
-        {
-          name: 'Macallan Sherry Oak 12 Years Old 0.7 л'
-        },
-        {
-          name: 'Macallan A Night on Earth In Scotland 0.7 л'
-        },
-        {
-          name: 'Macallan Fine Oak, 21'
-        }
-      ]
+      resultList: []
     },
     second: {
       value: '',
@@ -107,31 +109,12 @@ export default class Trade extends Vue {
           id: 0,
           name: 'Выберете год производства',
           value: ''
-        },
-        {
-          id: 1,
-          name: '2011',
-          value: '2011'
-        },
-        {
-          id: 2,
-          name: '2012',
-          value: '2012'
-        },
-        {
-          id: 3,
-          name: '2013',
-          value: '2013'
-        },
-        {
-          id: 4,
-          name: '2014',
-          value: '2014'
         }
       ]
     },
     third: {
       value: '',
+      price: 0,
       disable: true
     }
   }
@@ -141,7 +124,7 @@ export default class Trade extends Vue {
       {
         id: 1,
         label: 'Название',
-        text: this.fields?.first.value
+        text: this.shortGradeName
       },
       {
         id: 2,
@@ -151,23 +134,19 @@ export default class Trade extends Vue {
     ]
   }
 
-  get createFields () {
+  get shortGradeName () {
+    const wordLength = 25
+    const shortName = this.fields?.first.choosedList[0]?.name.length > wordLength ? `${this.fields?.first.choosedList[0]?.name.slice(0, wordLength)}...` : this.fields?.first.choosedList[0]?.name
+    return this.fields?.first.choosedList ? shortName : ''
+  }
+
+  createFields () {
     return {
       first: {
         value: '',
         disable: false,
         choosedList: [],
-        resultList: [
-          {
-            name: 'Macallan Sherry Oak 12 Years Old 0.7 л'
-          },
-          {
-            name: 'Macallan A Night on Earth In Scotland 0.7 л'
-          },
-          {
-            name: 'Macallan Fine Oak, 21'
-          }
-        ]
+        resultList: []
       },
       second: {
         value: '',
@@ -177,39 +156,85 @@ export default class Trade extends Vue {
             id: 0,
             name: 'Выберете год производства',
             value: ''
-          },
-          {
-            id: 1,
-            name: '2011',
-            value: '2011'
-          },
-          {
-            id: 2,
-            name: '2012',
-            value: '2012'
-          },
-          {
-            id: 3,
-            name: '2013',
-            value: '2013'
-          },
-          {
-            id: 4,
-            name: '2014',
-            value: '2014'
           }
         ]
       },
       third: {
         value: '',
+        price: 0,
         disable: true
       }
     }
   }
 
+  async getAlcoholNamesBySearch () {
+    return await this.$axios.get(`/alcohol/names/get?category=${this.currentCategory}&name=${this.fields.first.value}`)
+      .then((response: { data: { name: string }[] }) => {
+        this.fields.first.resultList = response.data.map((alcohol, index) => {
+          return {
+            id: index,
+            name: alcohol.name,
+            active: false
+          }
+        })
+      })
+      .catch((error: any) => console.log(error))
+  }
+
+  async getAlcoholYearAndPriceByName () {
+    return await this.$axios.get(`/alcohol/info/get?category=${this.currentCategory}&name=${this.fields?.first.choosedList[0]?.name}`)
+      .then((response: { data: { year: string, price: number }[] }) => {
+        // eslint-disable-next-line array-callback-return
+        response.data.map((alcohol, index) => {
+          this.fields.second.options.push({
+            id: index + 1,
+            name: alcohol.year.toString(),
+            value: alcohol.year.toString()
+          })
+          this.fields.third.price = alcohol.price
+        })
+      })
+      .catch((error: any) => console.log(error))
+  }
+
+  onSearch () {
+    this.getAlcoholNamesBySearch()
+  }
+
   resetForm () {
-    this.fields = this.createFields
-    console.log(this.fields, 'current fields')
+    this.fields = this.createFields()
+  }
+
+  chooseProductName (e: Event) {
+    this.fields.second.options = [
+      {
+        id: 0,
+        name: 'Выберете год производства',
+        value: ''
+      }
+    ]
+    this.fields.second.value = ''
+    // @ts-ignore
+    const candidate = this.fields.first.resultList.find(candidate => candidate.name === e.target.textContent)
+    if (candidate) {
+      const candidateIndex = this.fields.first.choosedList.indexOf(candidate)
+
+      if (candidate) {
+        if (candidateIndex === -1) {
+          this.fields.first.choosedList = []
+          // eslint-disable-next-line no-return-assign
+          this.fields.first.resultList.map(alcohol => alcohol.active = false)
+          this.fields.first.choosedList.push(candidate)
+          candidate.active = true
+          this.getAlcoholYearAndPriceByName()
+        } else {
+          this.fields.first.choosedList = []
+          candidate.active = false
+          this.resetForm()
+        }
+      }
+    }
+    console.log(this.fields.first.choosedList)
   }
 
   chooseYear (e: Event) {

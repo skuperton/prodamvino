@@ -11,10 +11,19 @@
         placeholder="Введите название напитка"
         v-on:input="onInput"
       )
-      .__tags
-        .__tag(
-          v-for="tag in resultList"
-        ) {{tag.name}}
+      template(
+        v-if="resultList"
+      )
+        transition-group.__tags(
+          name="fade"
+          mode="out-in"
+        )
+          .__tag(
+            v-for="tag in resultList"
+            :key="tag.name"
+            :class="tag.active ? ['is-active'] : ''"
+            v-on:click="$emit('click', $event)"
+          ) {{tag.name}}
 </template>
 
 <script lang="ts">
@@ -27,7 +36,8 @@ import DealStep from '~/components/blanks/deal-step.vue'
   }
 })
 export default class FirstStep extends Vue {
-  @Prop() resultList!: {name: string}[]
+  @Prop() resultList!: {id: number, name: string, active: boolean}[]
+  @Prop() choosedList!: string[]
   @Prop() disable!: boolean
   @VModel() valueModel!: string
 

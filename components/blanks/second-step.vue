@@ -13,8 +13,6 @@
         option.__option(
           v-for="option in options"
           :key="option.id"
-          :disabled="option.id === 0"
-          :selected="option.id === 0"
           :value="option.value"
         ) {{option.name}}
 </template>
