@@ -8,7 +8,7 @@
       width="110"
       :src="`/images/alcohol/${imgName}.svg`"
     )
-    p.__name {{name}}
+    p.__name {{correctName}}
 </template>
 
 <script lang="ts">
@@ -27,6 +27,18 @@ export default class CardProduct extends Vue {
     ]
 
     return classes
+  }
+
+  get correctName () {
+    const splitted = this.name.split('')
+
+    const first = splitted[0].toUpperCase()
+
+    const rest = [...splitted]
+
+    rest.splice(0, 1)
+
+    return [first, ...rest].join('')
   }
 }
 </script>

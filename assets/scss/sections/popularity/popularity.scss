@@ -19,6 +19,7 @@
 
   &__card {
     width: 200px;
+    height: 112px;
     display: inline-block;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
@@ -31,6 +32,7 @@
   @media (min-width: $tablet) {
     &__card {
       width: 235px;
+      height: 132px;
     }
 
     &__wrapper {
@@ -49,6 +51,7 @@
 
     &__card {
       width: 270px;
+      height: 152px;
     }
 
     &__title {

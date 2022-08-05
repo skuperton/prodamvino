@@ -10,6 +10,7 @@
       )
         mobile-layout-component(
           v-if="currentContent === 'mobile'"
+          :products="products"
           key="mobile"
           @clickedMobile="$emit('clickedMobile', $event)"
         )
@@ -60,38 +61,12 @@ export default class Menu extends Vue {
   @Prop({ default: 'mobile' }) readonly currentContent!: IMenu['currentContent']
   @Prop() readonly indent!: IMenu['indent']
 
-  products = [
-    {
-      id: 1,
-      imageName: 'vine',
-      name: 'Вино',
-      to: '/selling/вино'
-    },
-    {
-      id: 2,
-      imageName: 'kon',
-      name: 'Коньяк',
-      to: '/selling/коньяк'
-    },
-    {
-      id: 3,
-      imageName: 'viski',
-      name: 'Виски',
-      to: '/selling/виски'
-    },
-    {
-      id: 4,
-      imageName: 'vodka',
-      name: 'Водка',
-      to: '/selling/водка'
-    },
-    {
-      id: 5,
-      imageName: 'shamp',
-      name: 'Шампанское',
-      to: '/selling/шампанское'
-    }
-  ]
+  products: {
+    id: number
+    name: string
+    imageName: string
+    to: string
+  }[] = []
 
   links = [
     {
@@ -170,6 +145,28 @@ export default class Menu extends Vue {
       href: '#'
     }
   ]
+
+  async fetch (this: Menu) {
+    return await this.$axios.get('/alcohol/categories')
+      .then((response: {
+        data: {
+          id: number
+          author: string
+          image: string
+          name: string
+        }[]
+      }) => {
+        this.products = response.data.map((product) => {
+          return {
+            id: product.id,
+            name: product.name,
+            imageName: product.image,
+            to: `/selling/${product.name}`
+          }
+        })
+      })
+      .catch((error: any) => console.log(error))
+  }
 
   get isMobile () {
     return this.$device.isMobile
