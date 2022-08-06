@@ -3,10 +3,10 @@
     :style="shadow ? {'box-shadow': '0 2px 10px rgba(0, 0, 0, 0.1)'} : ''"
     :class="classes"
   )
-    nuxt-img.__image(
+    img.__image(
+      :src="image"
       height="123"
       width="110"
-      :src="`/images/alcohol/${imgName}.svg`"
     )
     p.__name {{correctName}}
 </template>
@@ -17,7 +17,7 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator'
 @Component
 export default class CardProduct extends Vue {
   @Prop({ default: 'm' }) size!: 'm' | 's'
-  @Prop() imgName!: string
+  @Prop() image!: string
   @Prop() name!: string
   @Prop({ default: true }) shadow!: boolean
 

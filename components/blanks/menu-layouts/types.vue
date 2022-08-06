@@ -11,7 +11,7 @@
         v-on:click.native="$emit('clicked', $event)"
       )
         card-product-component.__product(
-          :img-name="product.imageName"
+          :image="product.image"
           :name="product.name"
           :shadow="false"
           size="s"
@@ -26,7 +26,7 @@ export interface ITypes {
   title: string
   products: {
     id: number
-    imageName: string
+    image: string
     name: string
     to: string
   }[]

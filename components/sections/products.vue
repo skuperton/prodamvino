@@ -14,7 +14,7 @@
           v-on:click.native="goToTop"
         )
           card-product-component(
-            :img-name="product.imageName"
+            :image="product.image"
             :name="product.name"
             :data-aos-delay="150+(product.id*100)"
             data-aos="fade"
@@ -36,7 +36,7 @@ export default class Products extends Vue {
   products: {
     id: number
     name: string
-    imageName: string
+    image: string
     to: string
   }[] = []
 
@@ -87,7 +87,7 @@ export default class Products extends Vue {
           return {
             id: product.id,
             name: product.name,
-            imageName: product.image,
+            image: product.image,
             to: `/selling/${product.name}`
           }
         })

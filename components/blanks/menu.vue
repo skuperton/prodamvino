@@ -64,7 +64,7 @@ export default class Menu extends Vue {
   products: {
     id: number
     name: string
-    imageName: string
+    image: string
     to: string
   }[] = []
 
@@ -160,7 +160,7 @@ export default class Menu extends Vue {
           return {
             id: product.id,
             name: product.name,
-            imageName: product.image,
+            image: product.image,
             to: `/selling/${product.name}`
           }
         })

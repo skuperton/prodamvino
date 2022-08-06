@@ -230,11 +230,10 @@ export default class Trade extends Vue {
         } else {
           this.fields.first.choosedList = []
           candidate.active = false
-          this.resetForm()
+          this.fields.third.price = 0
         }
       }
     }
-    console.log(this.fields.first.choosedList)
   }
 
   chooseYear (e: Event) {

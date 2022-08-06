@@ -11,7 +11,7 @@
           :href="card.link"
           :key="card.id"
         )
-          nuxt-img(
+          img(
             :src="card.image"
             :data-aos-delay="150+(index*100)"
             data-aos="fade"
@@ -39,7 +39,6 @@ export default class Popularity extends Vue {
         }[]
       }) => {
         this.cards = response.data.map((card) => {
-          console.log(card)
           return {
             id: card.id,
             image: card.image,

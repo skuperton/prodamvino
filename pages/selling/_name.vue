@@ -56,7 +56,6 @@ export default class SellingName extends Vue {
   validate ({ params }: NuxtOptions) {
     if (params) {
       return Object.entries(productNames).some((item) => {
-        console.log(item)
         return item[1].title === (params.name)
       })
     }

@@ -2,7 +2,7 @@
   .b-card-message
     .__header
       .__information
-        nuxt-img.__avatar(
+        img.__avatar(
           v-if="avatar"
           :src="avatar"
           height="40"
@@ -23,9 +23,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
-import Rating from '~/components/ui/rating.vue'
 import AOS from 'aos'
-import getOs from '~/ts/getOs'
+import Rating from '~/components/ui/rating.vue'
 
 export interface ICardMessage {
   id: number

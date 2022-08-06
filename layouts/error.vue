@@ -20,10 +20,6 @@ import { NuxtError } from '@nuxt/types'
 })
 export default class ErrorLayout extends Vue {
   @Prop() readonly error!: NuxtError
-
-  mounted () {
-    console.log(this.$refs)
-  }
 }
 </script>
 
