@@ -8,7 +8,7 @@
         .__image
           .__border
             img(
-              :src="`/images/alcohol/${previewImage || imageName}.svg`"
+              :src="previewImage || `/images/alcohol/${imageName}.svg`"
             )
     .__second
       .__content
@@ -254,6 +254,7 @@ export default class Trade extends Vue {
           this.fields.first.value = this.fields.first.choosedList[0].name
           // @ts-ignore
           this.scrollToNextStep(this.$refs.second?.$el)
+          this.previewImage = ''
         } else {
           this.fields.first.choosedList = []
           candidate.active = false
