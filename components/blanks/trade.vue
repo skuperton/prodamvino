@@ -23,6 +23,7 @@
           data-aos-offset="0"
           @input="onSearch"
           @click="chooseProductName"
+          @tap="onTap"
         )
         second-step-component.__step(
           v-model="fields.second.value"
@@ -218,8 +219,11 @@ export default class Trade extends Vue {
 
   onSearch () {
     this.getAlcoholNamesBySearch()
+  }
+
+  onTap () {
     // @ts-ignore
-    this.scrollToNextStep(this.$refs.first.$el)
+    this.scrollToNextStep(this.$refs.first?.$el, { offset: -140, cancelable: false })
   }
 
   resetForm () {
@@ -253,7 +257,7 @@ export default class Trade extends Vue {
           this.getAlcoholYearByName()
           this.fields.first.value = this.fields.first.choosedList[0].name
           // @ts-ignore
-          this.scrollToNextStep(this.$refs.second?.$el)
+          this.scrollToNextStep(this.$refs.second?.$el, scrollToOptions)
           this.previewImage = ''
         } else {
           this.fields.first.choosedList = []
@@ -272,17 +276,15 @@ export default class Trade extends Vue {
       this.fields.second.value = target.value
       this.getAlcoholPriceAndImageByName()
       // @ts-ignore
-      this.scrollToNextStep(this.$refs.third?.$el)
+      this.scrollToNextStep(this.$refs.third?.$el, scrollToOptions)
     }
   }
 
-  scrollToNextStep (element: HTMLElement) {
-    // @ts-ignore
-    this.$scrollTo(element, 500, scrollToOptions)
-  }
-
-  mounted () {
-    console.log(this.$refs)
+  scrollToNextStep (element: HTMLElement, options: any) {
+    if (this.$device.isDesktop) {
+      // @ts-ignore
+      this.$scrollTo(element, 500, options)
+    }
   }
 }
 </script>

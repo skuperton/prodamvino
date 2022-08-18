@@ -10,6 +10,7 @@
         :value="valueModel"
         placeholder="Введите название напитка"
         v-on:input="onInput"
+        v-on:click="$emit('tap', $event)"
       )
       template(
         v-if="resultList"
