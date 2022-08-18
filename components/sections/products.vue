@@ -18,6 +18,7 @@
             :name="product.name"
             :data-aos-delay="150+(product.id*100)"
             data-aos="fade"
+            data-aos-offset="0"
           )
 </template>
 
