@@ -8,7 +8,7 @@
         .__image
           .__border
             nuxt-img(
-              :src="`/images/alcohol/${imageName}.svg`"
+              :src="`/images/alcohol/${previewImage || imageName}.svg`"
             )
     .__second
       .__content
@@ -17,6 +17,7 @@
           :result-list="fields.first.resultList"
           :choosed-list="fields.first.choosedList"
           :disable="fields.first.disable"
+          ref="first"
           data-aos="fade-up"
           data-aos-delay="500"
           data-aos-offset="0"
@@ -27,6 +28,7 @@
           v-model="fields.second.value"
           :disable="!fields.first.choosedList.length"
           :options="fields.second.options"
+          ref="second"
           data-aos="fade-up"
           data-aos-delay="600"
           data-aos-offset="0"
@@ -36,6 +38,7 @@
           :disable="!fields.second.value"
           :fields="thirdStepFields"
           :price="fields.third.price"
+          ref="third"
           data-aos="fade-up"
           data-aos-delay="700"
           data-aos-offset="0"
@@ -82,6 +85,11 @@ export type Fields = {
   }
 }
 
+const scrollToOptions = {
+  offset: -100,
+  cancelable: false
+}
+
 @Component({
   components: {
     'third-step-component': ThirdStep,
@@ -93,6 +101,8 @@ export type Fields = {
 export default class Trade extends Vue {
   @Prop() readonly imageName!: string
   @Prop() readonly currentCategory!: string
+
+  previewImage = ''
 
   fields: Fields = {
     first: {
@@ -181,8 +191,8 @@ export default class Trade extends Vue {
       .catch((error: any) => console.log(error))
   }
 
-  async getAlcoholYearAndPriceByName () {
-    return await this.$axios.get(`/alcohol/info/get?category=${this.currentCategory}&name=${this.fields?.first.choosedList[0]?.name}`)
+  async getAlcoholYearByName () {
+    return await this.$axios.get(`/alcohol/years/get?category=${this.currentCategory}&name=${this.fields?.first.choosedList[0]?.name}`)
       .then((response: { data: { year: string, price: number }[] }) => {
         // eslint-disable-next-line array-callback-return
         response.data.map((alcohol, index) => {
@@ -191,18 +201,32 @@ export default class Trade extends Vue {
             name: alcohol.year.toString(),
             value: alcohol.year.toString()
           })
-          this.fields.third.price = alcohol.price
         })
+      })
+      .catch((error: any) => console.log(error))
+  }
+
+  async getAlcoholPriceAndImageByName () {
+    return await this.$axios.get(`/alcohol/price/get?category=${this.currentCategory}&name=${this.fields?.first.choosedList[0]?.name}&year=${this.fields?.second.value}`)
+      .then((response: { data: { image: string, price: number } }) => {
+        // eslint-disable-next-line array-callback-return
+        this.fields.third.price = response.data.price
+        this.previewImage = response.data.image
       })
       .catch((error: any) => console.log(error))
   }
 
   onSearch () {
     this.getAlcoholNamesBySearch()
+    // @ts-ignore
+    this.scrollToNextStep(this.$refs.first.$el)
   }
 
   resetForm () {
+    // @ts-ignore
+    this.$scrollTo('body')
     this.fields = this.createFields()
+    this.previewImage = ''
   }
 
   chooseProductName (e: Event) {
@@ -226,11 +250,16 @@ export default class Trade extends Vue {
           this.fields.first.resultList.map(alcohol => alcohol.active = false)
           this.fields.first.choosedList.push(candidate)
           candidate.active = true
-          this.getAlcoholYearAndPriceByName()
+          this.getAlcoholYearByName()
+          this.fields.first.value = this.fields.first.choosedList[0].name
+          // @ts-ignore
+          this.scrollToNextStep(this.$refs.second?.$el)
         } else {
           this.fields.first.choosedList = []
           candidate.active = false
           this.fields.third.price = 0
+          this.fields.first.value = ''
+          this.previewImage = ''
         }
       }
     }
@@ -240,7 +269,19 @@ export default class Trade extends Vue {
     const target = e.target as HTMLInputElement
     if (this.fields && target) {
       this.fields.second.value = target.value
+      this.getAlcoholPriceAndImageByName()
+      // @ts-ignore
+      this.scrollToNextStep(this.$refs.third?.$el)
     }
+  }
+
+  scrollToNextStep (element: HTMLElement) {
+    // @ts-ignore
+    this.$scrollTo(element, 500, scrollToOptions)
+  }
+
+  mounted () {
+    console.log(this.$refs)
   }
 }
 </script>

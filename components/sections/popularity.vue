@@ -10,11 +10,11 @@
           v-for="(card, index) in cards"
           :href="card.link"
           :key="card.id"
+          :data-aos-delay="150+(index*100)"
+          data-aos="fade"
         )
           img(
             :src="card.image"
-            :data-aos-delay="150+(index*100)"
-            data-aos="fade"
           )
 </template>
 
