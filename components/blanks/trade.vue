@@ -7,7 +7,7 @@
       .__preview
         .__image
           .__border
-            nuxt-img(
+            img(
               :src="`/images/alcohol/${previewImage || imageName}.svg`"
             )
     .__second
