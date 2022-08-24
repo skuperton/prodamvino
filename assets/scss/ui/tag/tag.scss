@@ -4,6 +4,7 @@
   border-radius: $tagBorderRadius;
   border: $tagBorderStyle;
   background-color: $tagBackground;
+  color: $secondaryColor;
 
   &__image {
     display: inline-block;

@@ -3,7 +3,7 @@
     deal-step-component.__box(
       :disabled="disable"
       step-number="#2"
-      step-name="Год производства"
+      step-name="Год"
     )
       p.__label Выберете год производства
       select.__select(

@@ -10,18 +10,18 @@
         data-aos-delay="200"
       )
         .__head
-          tag-component(
+          NuxtLink.__card(
             v-for="(tag, index) in tags"
             :key="tag.id"
-            :img-name="tag.imgName"
-            :name="tag.name"
-            :data-aos-delay="300 + (index * 100)"
-            data-aos="fade-down"
+            :to="tag.to"
+            v-on:click.native="goToTop"
           )
-        p.__text(
-          data-aos="fade"
-          data-aos-delay="800"
-        ) {{text}}
+            tag-component(
+              :img-name="tag.image"
+              :name="tag.name"
+              :data-aos-delay="300 + (index * 100)"
+              data-aos="fade-down"
+            )
 </template>
 
 <script lang="ts">
@@ -34,34 +34,65 @@ import Tag from '~/components/ui/tag.vue'
   }
 })
 export default class Redemption extends Vue {
-  text = 'Повседневная практика показывает, что дальнейшее развитие различных форм деятельности позволяет оценить значение систем массового участия. Идейные соображения высшего порядка, а также консультация с широким активом играет важную роль в формировании существенных финансовых и административных условий.'
+  tags: {
+    id: number,
+    name: string,
+    image: string,
+    to: string
+  }[] = []
+  // tags = [
+  //   {
+  //     id: 1,
+  //     name: 'Вино',
+  //     image: 'vine'
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'Коньяк',
+  //     image: 'kon'
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'Виски',
+  //     image: 'viski'
+  //   },
+  //   {
+  //     id: 4,
+  //     name: 'Водка',
+  //     image: 'vodka'
+  //   },
+  //   {
+  //     id: 5,
+  //     name: 'Шампанское',
+  //     image: 'shamp'
+  //   }
+  // ]
 
-  tags = [
-    {
-      id: 1,
-      name: 'Вино',
-      imgName: 'vine'
-    },
-    {
-      id: 2,
-      name: 'Коньяк',
-      imgName: 'kon'
-    },
-    {
-      id: 3,
-      name: 'Виски',
-      imgName: 'viski'
-    },
-    {
-      id: 4,
-      name: 'Водка',
-      imgName: 'vodka'
-    },
-    {
-      id: 5,
-      name: 'Шампанское',
-      imgName: 'shamp'
-    }
-  ]
+  async fetch (this: Redemption) {
+    return await this.$axios.get('/alcohol/categories')
+      .then((response: {
+        data: {
+          id: number
+          author: string
+          image: string
+          name: string
+        }[]
+      }) => {
+        this.tags = response.data.map((product) => {
+          return {
+            id: product.id,
+            name: product.name,
+            image: product.image,
+            to: `/selling/${product.name}`
+          }
+        })
+      })
+      .catch((error: any) => console.log(error))
+  }
+
+  goToTop () {
+    // @ts-ignore
+    this.$scrollTo('body')
+  }
 }
 </script>

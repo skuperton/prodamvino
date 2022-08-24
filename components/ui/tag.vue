@@ -1,10 +1,10 @@
 <template lang="pug">
   .b-tag
-    nuxt-img.__image(
+    img.__image(
       v-if="imgName"
-      :src="`/images/alcohol/${imgName}-min.svg`"
+      :src="imgName"
     )
-    p.__text {{name}}
+    p.__text {{correctName}}
 </template>
 
 <script lang="ts">
@@ -18,5 +18,17 @@ export interface ITag {
 export default class Tag extends Vue {
   @Prop({ required: true }) readonly name!: string
   @Prop({ required: true }) readonly imgName!: string
+
+  get correctName () {
+    const splitted = this.name.split('')
+
+    const first = splitted[0].toUpperCase()
+
+    const rest = [...splitted]
+
+    rest.splice(0, 1)
+
+    return [first, ...rest].join('')
+  }
 }
 </script>

@@ -7,12 +7,14 @@
   &__wrapper {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 10px;
     margin-bottom: 14px;
   }
   &__input {
     font-family: inherit;
-    padding: 12px 10px;
+    padding: 0 10px;
+    height: 40px;
     background-color: $mainBackground;
     border: $inputBorderStyle;
 
@@ -27,6 +29,7 @@
     }
   }
   &__link {
+    display: block;
     text-align: center;
     opacity: 0.4;
     text-decoration: underline;
@@ -40,12 +43,13 @@
     }
   }
 
-  @media (min-width: $tablet) {
+  @media (min-width: $desktop) {
     &__label {
       font-size: 14px;
       margin-bottom: 16px;
     }
     &__input {
+      height: 80px;
       font-size: 26px;
     }
     &__wrapper {

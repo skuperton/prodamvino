@@ -19,7 +19,9 @@
           ) {{price}} ₽
           p.__descr * Деньги сразу
           p.__descr * Бесплатный выезд
-          p.__descr Выкупим за 90 минут
+          p.__descr * Цена может меняться.
+          p.__descr Подробности уточняйте у менеджера.
+        contact-component.__contact
         link-component.__button(
           view="secondary"
           underline
@@ -33,6 +35,7 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import DealStep from '~/components/blanks/deal-step.vue'
 import Link from '~/components/ui/link.vue'
+import Contact from '~/components/blanks/menu-layouts/contact.vue'
 
 export interface IThirdStep {
   fields: {
@@ -46,6 +49,7 @@ export interface IThirdStep {
 
 @Component({
   components: {
+    'contact-component': Contact,
     'link-component': Link,
     'deal-step-component': DealStep
   }

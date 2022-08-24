@@ -7,7 +7,7 @@
           data-aos="fade-right"
           data-aos-offset="0"
           data-aos-delay="300"
-        ) Продайте или поменяйте ваш алкоголь
+        ) Продайте ваш алкоголь
         span.__slogan(
           data-aos="fade-right"
           data-aos-offset="0"
@@ -27,7 +27,7 @@
             data-aos="fade-up"
             data-aos-offset="0"
             data-aos-delay="700"
-          ) Удобный trade-in
+          ) Работаем 24/7
           li.__step(
             data-aos="fade-up"
             data-aos-offset="0"

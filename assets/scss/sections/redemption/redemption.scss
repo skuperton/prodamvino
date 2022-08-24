@@ -16,7 +16,6 @@
   &__head {
     display: flex;
     gap: 10px;
-    margin-bottom: 13px;
     flex-wrap: wrap;
   }
 
@@ -35,10 +34,6 @@
 
     &__content {
       padding: 50px;
-    }
-
-    &__head {
-      margin-bottom: 37px;
     }
 
     &__text {
