@@ -33,6 +33,35 @@
     }
   }
 
+  &__callme {
+    padding: 15px 0 15px;
+
+    p {
+      font-weight: 600;
+      font-size: 20px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+  }
+
+  &__number {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    a {
+      display: inline-block;
+      vertical-align: middle;
+      color: $secondaryColor;
+    }
+  }
+
+  &__icon {
+    display: inline-block;
+    vertical-align: middle;
+    color: $primaryColor;
+    margin-right: 15px;
+  }
+
   &__promo {
     padding: 15px 15px;
     display: flex;
@@ -115,6 +144,17 @@
     &__button{
       font-size: 16px;
     }
+
+    &__callme {
+      p {
+        font-size: 26px;
+        margin-bottom: 15px;
+      }
+    }
+
+    &__number {
+      font-size: 24px;
+    }
   }
 
   @media (min-width: $desktop) {
@@ -161,7 +201,18 @@
     }
 
     &__button{
-      font-size: 20px;
+      font-size: 36px;
+    }
+
+    &__callme {
+      p {
+        font-size: 36px;
+        margin-bottom: 15px;
+      }
+    }
+
+    &__number {
+      font-size: 30px;
     }
   }
 }

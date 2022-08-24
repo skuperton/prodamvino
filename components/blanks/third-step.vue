@@ -21,7 +21,18 @@
           p.__descr * Бесплатный выезд
           p.__descr * Цена может меняться.
           p.__descr Подробности уточняйте у менеджера.
-        contact-component.__contact
+        .__callme
+          p Позвоните нам
+          .__number
+            font-awesome-icon.__icon(
+              :icon="['fas', 'phone']"
+            )
+            a(
+              href="tel:79362734449"
+            ) +7 936 273-44-49
+        contact-component.__contact(
+          :reversed="true"
+        )
         link-component.__button(
           view="secondary"
           underline

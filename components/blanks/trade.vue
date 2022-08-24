@@ -4,7 +4,9 @@
       data-aos="fade-right"
       data-aos-delay="300"
     )
-      .__preview
+      .__preview(
+        :style="previewStyles"
+      )
         .__image
           .__border
             img(
@@ -130,6 +132,8 @@ export default class Trade extends Vue {
     }
   }
 
+  headerOffset: number = 0
+
   get thirdStepFields () {
     return [
       {
@@ -149,6 +153,10 @@ export default class Trade extends Vue {
     const wordLength = 25
     const shortName = this.fields?.first.choosedList[0]?.name.length > wordLength ? `${this.fields?.first.choosedList[0]?.name.slice(0, wordLength)}...` : this.fields?.first.choosedList[0]?.name
     return this.fields?.first.choosedList ? shortName : ''
+  }
+
+  get previewStyles () {
+    return this.$device.isDesktopOrTablet ? { position: 'sticky', top: `${102 + 20}px` } : {}
   }
 
   createFields () {

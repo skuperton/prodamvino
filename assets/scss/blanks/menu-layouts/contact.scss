@@ -1,10 +1,13 @@
 .contact-layout {
+  display: flex;
+  flex-direction: column;
   &__callback {
     padding-bottom: 15px;
     border-bottom: $menuBorderStyle;
   }
   &__social {
     padding-top: 15px;
+    width: 100%;
   }
 
   @media (min-width: $tablet) {
