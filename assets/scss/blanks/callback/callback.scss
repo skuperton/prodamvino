@@ -33,15 +33,11 @@
     display: block;
     text-align: center;
     opacity: 0.4;
-    text-decoration: underline;
-    transition-property: opacity;
-    transition-timing-function: ease;
-    transition-duration: .2s;
     line-height: 150%;
-
-    &:hover {
-      opacity: 1;
-    }
+  }
+  &__ordered {
+    text-align: center;
+    font-size: 16px;
   }
 
   @media (max-width: $maxTablet) {
@@ -65,6 +61,9 @@
     &__link {
       display: block;
       font-size: 14px;
+    }
+    &__ordered {
+      font-size: 26px;
     }
   }
 }

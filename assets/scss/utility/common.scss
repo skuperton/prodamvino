@@ -53,6 +53,18 @@ main {
     display: block;
 }
 
+.template {
+  padding-top: 100px;
+
+  @media (min-width: 650px) {
+    padding-top: 140px;
+  }
+
+  @media (min-width: 1200px) {
+    padding-top: 160px;
+  }
+}
+
 .button,
 button {
     border: none;

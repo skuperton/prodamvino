@@ -13,10 +13,6 @@
           link-component.__link.--info(
             view="secondary"
             href="#"
-          ) Оферта
-          link-component.__link.--info(
-            view="secondary"
-            href="#"
           ) Политика обработки данных
           link-component.__link.--info(
             view="secondary"
@@ -26,8 +22,8 @@
         link-component.__number(
           view="secondary"
           underline
-          href="tel:+74993488478"
-        ) +7 499 348-84-78
+          href="tel:79362734449"
+        ) +7 936 273-44-49
         link-component.__email(
           view="secondary"
           underline

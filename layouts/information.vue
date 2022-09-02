@@ -7,22 +7,18 @@
     )
       Nuxt
     reviews-component
-    products-component(
-      title="Продать другие напитки"
-    )
+    promo-component
+    redemption-component
     questions-component
-    steps-component
-    popularity-component
     footer-component
 </template>
 
 <script>
 import { Component, mixins } from 'nuxt-property-decorator'
 import Reviews from '@/components/sections/reviews'
-import Products from '@/components/sections/products'
+import Promo from '~/components/sections/promo.vue'
 import Questions from '@/components/sections/questions'
-import Steps from '@/components/sections/steps'
-import Popularity from '@/components/sections/popularity'
+import Redemption from '~/components/sections/redemption.vue'
 import Header from '@/components/blanks/header'
 import Footer from '@/components/blanks/footer'
 import AosMixin from '@/mixins/aos'
@@ -30,11 +26,10 @@ import getOs from '@/ts/getOs'
 
 @Component({
   components: {
-    'popularity-component': Popularity,
-    'steps-component': Steps,
     'questions-component': Questions,
-    'products-component': Products,
     'reviews-component': Reviews,
+    'redemption-component': Redemption,
+    'promo-component': Promo,
     'header-component': Header,
     'footer-component': Footer
   }

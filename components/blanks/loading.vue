@@ -47,11 +47,6 @@ export default class Loading extends Vue {
   border: 4px solid rgba(9, 133, 81, 0.705);
   border-radius: 50%;
   border-top-color: #158876;
-  animation: spin 1s ease-in-out infinite;
-}
-@keyframes spin {
-  to {
-    -webkit-transform: rotate(360deg);
-  }
+  animation: rotate360 1s ease-in-out infinite;
 }
 </style>

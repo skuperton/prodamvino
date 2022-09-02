@@ -16,7 +16,7 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import CardProduct from '~/components/blanks/card-product.vue'
 import Link from '~/components/ui/link.vue'
 import Types, { ITypes } from '~/components/blanks/menu-layouts/types.vue'
-import Information from '~/components/blanks/menu-layouts/information.vue'
+import Information, { IInformation } from '~/components/blanks/menu-layouts/information.vue'
 
 export interface IMenu {
   currentContent: 'mobile' | 'types' | 'information' | 'contact'
@@ -35,34 +35,7 @@ export default class Mobile extends Vue {
   @Prop({ default: 'mobile' }) readonly currentContent!: IMenu['currentContent']
   @Prop() readonly indent!: IMenu['indent']
   @Prop() readonly products!: ITypes['products']
-
-  links = [
-    {
-      id: 1,
-      name: 'Алкоголь оптом',
-      href: '#'
-    },
-    {
-      id: 2,
-      name: 'Алкоголь оптом и в розницу',
-      href: '#'
-    },
-    {
-      id: 3,
-      name: 'Алкоголь оптом',
-      href: '#'
-    },
-    {
-      id: 4,
-      name: 'Алкоголь оптом и в розницу',
-      href: '#'
-    },
-    {
-      id: 5,
-      name: 'Алкоголь оптом',
-      href: '#'
-    }
-  ]
+  @Prop() readonly links!: IInformation['links']
 
   get isMobile () {
     return this.$device.isMobile

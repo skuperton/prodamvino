@@ -2,6 +2,8 @@
   .b-card-product(
     :style="shadow ? {'box-shadow': '0 2px 10px rgba(0, 0, 0, 0.1)'} : ''"
     :class="classes"
+    data-aos="fade"
+    data-aos-delay="200"
   )
     img.__image(
       :src="image"
@@ -12,10 +14,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { Component, mixins, Prop } from 'nuxt-property-decorator'
+import AosMixin from '~/mixins/aos'
 
 @Component
-export default class CardProduct extends Vue {
+export default class CardProduct extends mixins(AosMixin) {
   @Prop({ default: 'm' }) size!: 'm' | 's'
   @Prop() image!: string
   @Prop() name!: string

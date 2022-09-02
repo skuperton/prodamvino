@@ -62,7 +62,7 @@
         :indent="headerHeight"
         key="menu"
         @clickedMobile="productTypeSelected"
-        @clicked="productTypeSelected"
+        @clickedTypes="productTypeSelected"
       )
     overlay-component(
       v-if="menuActive"

@@ -8,16 +8,16 @@
           :stars="stars"
         )
         p.__information {{reviews}} отзывов  /  {{rating}} оценки
-    .__feedback
-      link-component.__link(
-        view="secondary"
-        underline
-        href="#"
-      ) Поставьте нам оценку
-      button-component(
-        size="m"
-        aria-label="Оставить отзыв"
-      ) Оставить отзыв
+    //.__feedback
+    //  link-component.__link(
+    //    view="secondary"
+    //    underline
+    //    href="#"
+    //  ) Поставьте нам оценку
+    //  button-component(
+    //    size="m"
+    //    aria-label="Оставить отзыв"
+    //  ) Оставить отзыв
 </template>
 
 <script lang="ts">

@@ -8,6 +8,18 @@
   z-index: $menuZIndex;
   overflow-y: auto;
 
+  &__spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2rem;
+    height: 2rem;
+    border: 8px solid $primaryColor;
+    border-radius: 50%;
+    border-top-color: $primaryColorHover;
+    animation: rotate360center 1s ease-in-out infinite;
+  }
+
   @media (max-width: $maxMobile) {
     padding: 15px 20px;
   }
@@ -27,5 +39,11 @@
     margin: 0 auto;
     width: 100%;
     box-shadow: $shadowHard;
+
+    &__spinner {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-width: 4px;
+    }
   }
 }

@@ -8,6 +8,7 @@
         v-for="(link, index) in links"
         :key="link.id + index"
         :href="link.href"
+        tag="nuxt-link"
         view="secondary"
       ) {{link.name}}
 </template>

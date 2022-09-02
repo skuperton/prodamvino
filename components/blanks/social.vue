@@ -47,16 +47,9 @@ export default class Social extends Vue {
     },
     {
       id: 4,
-      prefix: 'fab',
-      iconName: 'vk',
-      url: '#',
-      color: '#0077FF'
-    },
-    {
-      id: 5,
       prefix: 'far',
       iconName: 'envelope',
-      url: '#',
+      url: 'mailto:order@prodamvino.ru',
       color: '#00B4D8'
     }
   ]

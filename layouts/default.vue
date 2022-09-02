@@ -6,11 +6,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
-import AOS from 'aos'
+import { Component, mixins } from 'nuxt-property-decorator'
 import Header from '~/components/blanks/header.vue'
 import Footer from '~/components/blanks/footer.vue'
 import 'aos/dist/aos.css'
+import AosMixin from '~/mixins/aos'
 import getOs from '~/ts/getOs'
 
 @Component({
@@ -19,28 +19,12 @@ import getOs from '~/ts/getOs'
     'footer-component': Footer
   }
 })
-export default class DefaultLayout extends Vue {
+export default class DefaultLayout extends mixins(AosMixin) {
   mounted () {
-    AOS.init({
-      // Global settings
-      startEvent: 'DOMContentLoaded',
-      disable: window.innerWidth < 1200,
-
-      // Settings that can be overridden
-      offset: 150,
-      duration: 600,
-      easing: 'ease',
-      mirror: false,
-      once: true
-    })
     document.documentElement.classList.add(`os-${getOs()}`)
 
     // @ts-ignore
     this.$scrollTo('body')
-  }
-
-  beforeDestroy () {
-    AOS.refreshHard()
   }
 }
 </script>

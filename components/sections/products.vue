@@ -23,15 +23,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { Component, mixins, Prop } from 'nuxt-property-decorator'
 import CardProduct from '~/components/blanks/card-product.vue'
+import AosMixin from '~/mixins/aos'
 
 @Component({
   components: {
     'card-product-component': CardProduct
   }
 })
-export default class Products extends Vue {
+export default class Products extends mixins(AosMixin) {
   @Prop() readonly title!: string
 
   products: {

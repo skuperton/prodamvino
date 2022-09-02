@@ -8,16 +8,14 @@
       trade-component.__trade(
         :image-name="imageName"
         :current-category="titleName"
-        data-aos="fade"
-        data-aos-delay="200"
       )
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, mixins} from 'nuxt-property-decorator'
 import { NuxtOptions } from '@nuxt/types'
-import AOS from 'aos'
 import Trade from '~/components/blanks/trade.vue'
+import AosMixin from '~/mixins/aos'
 
 const productNames = {
   vino: {
@@ -52,7 +50,7 @@ const productNames = {
   },
   layout: 'selling'
 })
-export default class SellingName extends Vue {
+export default class SellingName extends mixins(AosMixin) {
   validate ({ params }: NuxtOptions) {
     if (params) {
       return Object.entries(productNames).some((item) => {
@@ -74,16 +72,6 @@ export default class SellingName extends Vue {
   get imageName () {
     const name = this.currentProduct
     return name ? name.imgName : ''
-  }
-
-  mounted () {
-    if (this.$device.isMobileOrTablet) {
-      AOS.init()
-    }
-  }
-
-  beforeDestroy () {
-    AOS.refreshHard()
   }
 }
 </script>

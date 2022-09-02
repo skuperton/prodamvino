@@ -120,7 +120,7 @@ export default class Trade extends Vue {
       options: [
         {
           id: 0,
-          name: 'Выберете год производства',
+          name: 'Год',
           value: ''
         }
       ]
@@ -143,7 +143,7 @@ export default class Trade extends Vue {
       },
       {
         id: 2,
-        label: 'Год производства',
+        label: 'Год',
         text: this.fields?.second.value
       }
     ]
@@ -173,7 +173,7 @@ export default class Trade extends Vue {
         options: [
           {
             id: 0,
-            name: 'Выберете год производства',
+            name: 'Год',
             value: ''
           }
         ]
@@ -245,7 +245,7 @@ export default class Trade extends Vue {
     this.fields.second.options = [
       {
         id: 0,
-        name: 'Выберете год производства',
+        name: 'Год',
         value: ''
       }
     ]

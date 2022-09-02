@@ -5,7 +5,7 @@
       step-number="#2"
       step-name="Год"
     )
-      p.__label Выберете год производства
+      p.__label Выберете год
       select.__select(
         v-if="options"
         v-on:change="$emit('onChange', $event)"

@@ -19,7 +19,7 @@ import { IButtonProps } from '~/components/ui/button.vue'
 
 export interface ILinkProps {
   href: string
-  tag?: 'a' | 'button' | 'p'
+  tag?: 'a' | 'button' | 'p' | 'nuxt-link'
   // size?: 's' | 'm' | 'inherit'
   view?: 'primary' | 'secondary'
   underline?: boolean | string
@@ -87,6 +87,9 @@ export default class Link extends Vue {
       ...this.tag === 'button' && {
         role: 'button',
         type: 'button'
+      },
+      ...this.tag === 'nuxt-link' && {
+        to: this.href
       }
     }
   }

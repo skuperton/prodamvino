@@ -59,20 +59,5 @@ export default class CardMessage extends Vue {
       return array
     }
   }
-
-  mounted () {
-    AOS.init({
-      // Global settings
-      startEvent: 'DOMContentLoaded',
-      disable: window.innerWidth < 1200,
-
-      // Settings that can be overridden
-      offset: 150,
-      duration: 600,
-      easing: 'ease',
-      mirror: false,
-      once: true
-    })
-  }
 }
 </script>

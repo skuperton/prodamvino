@@ -1,7 +1,7 @@
 <template lang="pug">
   .b-contact-layout
     callback-component.__callback(
-      :style="this.reversed ? {'order': 2, 'margin-top': '20px'}: ''"
+      :style="this.reversed ? {'order': 2, 'margin-top': `${this.$device.isMobileOrTablet ? '20px' : '40px'}`}: ''"
     )
     social-component.__social
 </template>
