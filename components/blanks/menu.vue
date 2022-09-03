@@ -12,20 +12,22 @@
           :products="products"
           :links="links"
           key="mobile"
-          @clickedMobile="$emit('clickedMobile', $event)"
+          @clickedTypesMobile="$emit('clickedTypesMobile', $event)"
+          @clickedInformationMobile="$emit('clickedInformationMobile', $event)"
         )
         types-layout-component.__content(
           v-if="currentContent === 'types'"
           :products="products"
           title="Виды алкоголя"
           key="types"
-          @clicked="$emit('clickedTypes', $event)"
+          @clickedTypes="$emit('clickedTypes', $event)"
         )
         information-layout-component.__content(
           v-if="currentContent === 'information'"
           :links="links"
           title="Информация"
           key="Информация"
+          @clickedInformation="$emit('clickedInformation', $event)"
         )
         contact-layout-component(
           v-if="currentContent === 'contact'"

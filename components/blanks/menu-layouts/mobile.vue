@@ -3,11 +3,12 @@
     types-layout-component.__content(
       :products="products"
       title="Виды алкоголя"
-      @clicked="$emit('clickedMobile', $event)"
+      @clickedTypes="$emit('clickedTypesMobile', $event)"
     )
     information-layout-component.__content(
       :links="links"
       title="Информация"
+      @clickedInformation="$emit('clickedInformationMobile', $event)"
     )
 </template>
 

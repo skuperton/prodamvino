@@ -61,8 +61,10 @@
         :current-content="menuContent"
         :indent="headerHeight"
         key="menu"
-        @clickedMobile="productTypeSelected"
+        @clickedTypesMobile="productTypeSelected"
+        @clickedInformationMobile="productTypeSelected"
         @clickedTypes="productTypeSelected"
+        @clickedInformation="productTypeSelected"
       )
     overlay-component(
       v-if="menuActive"
@@ -187,6 +189,7 @@ export default class Header extends Vue {
   productTypeSelected () {
     this.burgerMenuActive = false
     this.menuActive = false
+    console.log('tap')
 
     // @ts-ignore
     this.$scrollTo('body')

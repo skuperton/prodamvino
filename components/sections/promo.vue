@@ -10,12 +10,13 @@
             font-awesome-icon.__calendar(
               :icon="['fas', 'calendar-days']"
             )
-            p '{{promo.month}}'
-          nuxt-img.__image.--mobile(
-            src="images/alcohol/banner.png"
-            height="200"
-            width="200"
-          )
+            p {{promo.month}}
+          .__preview
+            nuxt-img.__image.--mobile(
+              :src="promo.image"
+              height="200"
+              width="200"
+            )
           h3.__title(
             data-aos="fade-right"
             data-aos-delay="200"
@@ -30,13 +31,13 @@
               view="secondary"
               aria-label="Рассчитать"
             ) Рассчитать
-        .__right
+        .__preview
           nuxt-img.__image.--desktop(
+            :src="promo.image"
             height="600"
             width="600"
             data-aos="fade-left"
             data-aos-delay="400"
-            src="images/alcohol/banner-desktop.png"
           )
 </template>
 

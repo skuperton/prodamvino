@@ -8,7 +8,7 @@
         v-for="product in products"
         :key="product.id"
         :to="product.to"
-        v-on:click.native="$emit('clicked', $event)"
+        v-on:click.native="$emit('clickedTypes', $event)"
       )
         card-product-component.__product(
           :image="product.image"

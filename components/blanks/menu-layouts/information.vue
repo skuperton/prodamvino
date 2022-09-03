@@ -10,6 +10,7 @@
         :href="link.href"
         tag="nuxt-link"
         view="secondary"
+        v-on:click.native="$emit('clickedInformation', $event)"
       ) {{link.name}}
 </template>
 
