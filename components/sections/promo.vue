@@ -13,7 +13,7 @@
             p {{promo.month}}
           .__preview
             nuxt-img.__image.--mobile(
-              :src="promo.image"
+              :src="promo.image || 'images/alcohol/banner.png'"
               height="200"
               width="200"
             )
@@ -27,17 +27,20 @@
             data-aos-delay="100"
           )
             button-component.__button(
+              :href="routeToPromoCategory"
+              tag="nuxt-link"
               size="l"
               view="secondary"
               aria-label="Рассчитать"
             ) Рассчитать
-        .__preview
+        .__preview(
+          data-aos="fade-left"
+          data-aos-delay="400"
+        )
           nuxt-img.__image.--desktop(
-            :src="promo.image"
+            :src="promo.image || 'images/alcohol/banner-desktop.png'"
             height="600"
             width="600"
-            data-aos="fade-left"
-            data-aos-delay="400"
           )
 </template>
 
@@ -51,7 +54,12 @@ import Button from '~/components/ui/button.vue'
   }
 })
 export default class Promo extends Vue {
-  promo = {}
+  promo: {
+    description?: string
+    image?: string
+    month?: string
+    link?: string
+  } = {}
 
   async fetch (this: Promo) {
     return await this.$axios.get('/alcohol/offer')
@@ -60,15 +68,23 @@ export default class Promo extends Vue {
           description: string
           image: string
           month: string
+          name: string
         }
       }) => {
         this.promo = {
           description: response.data.description ?? '',
           image: response.data.image ?? '',
-          month: response.data.month ?? ''
+          month: response.data.month ?? '',
+          link: '/selling/коньяк'
+          // to: `/selling/${response.data.name}`
         }
       })
       .catch((error: any) => console.log(error))
+  }
+
+  get routeToPromoCategory () {
+    // return `/selling/${this.promo.link}`
+    return '/selling/коньяк'
   }
 }
 </script>

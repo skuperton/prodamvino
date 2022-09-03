@@ -18,7 +18,7 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 export interface IButtonProps {
   view?: 'primary' | 'secondary'
-  tag?: 'button' | 'a'
+  tag?: 'button' | 'a' | 'nuxt-link'
   size?: 's' | 'm' | 'l'
   type?: 'button' | 'submit'
   disabled?: boolean | ''
@@ -54,6 +54,9 @@ export default class Button extends Vue {
       ...this.tag === 'button' && {
         role: 'button',
         type: 'button'
+      },
+      ...this.tag === 'nuxt-link' && {
+        to: this.href
       },
       is: this.tag,
       type: this.type,

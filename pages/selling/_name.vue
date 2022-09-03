@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { Component, mixins} from 'nuxt-property-decorator'
+import { Component, mixins } from 'nuxt-property-decorator'
 import { NuxtOptions } from '@nuxt/types'
 import Trade from '~/components/blanks/trade.vue'
 import AosMixin from '~/mixins/aos'
