@@ -58,7 +58,7 @@ export default class Promo extends Vue {
     description?: string
     image?: string
     month?: string
-    link?: string
+    category?: string
   } = {}
 
   async fetch (this: Promo) {
@@ -68,23 +68,21 @@ export default class Promo extends Vue {
           description: string
           image: string
           month: string
-          name: string
+          category: string
         }
       }) => {
         this.promo = {
           description: response.data.description ?? '',
           image: response.data.image ?? '',
           month: response.data.month ?? '',
-          link: '/selling/коньяк'
-          // to: `/selling/${response.data.name}`
+          category: response.data.category ?? ''
         }
       })
       .catch((error: any) => console.log(error))
   }
 
   get routeToPromoCategory () {
-    // return `/selling/${this.promo.link}`
-    return '/selling/коньяк'
+    return `/selling/${this.promo.category}`
   }
 }
 </script>
