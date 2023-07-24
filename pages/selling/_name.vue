@@ -20,27 +20,81 @@ import AosMixin from '~/mixins/aos'
 const productNames = {
   vino: {
     title: 'вино',
-    imgName: 'vine'
+    imgName: 'vine',
+    head: {
+      title: 'Продать вино. Он-лайн калькулятор выкупа алкоголя',
+      meta: [
+        {
+          name: 'description',
+          content: 'Продать элитное или коллекционное вино с выгодной оценкой. Наши курьеры в Москве проведут сделку быстро ,на лучших условиях'
+        }
+      ]
+    }
   },
   kon: {
     title: 'коньяк',
-    imgName: 'kon'
+    imgName: 'kon',
+    head: {
+      title: 'Продать коньяк. Он-лайн калькулятор выкупа алкоголя',
+      meta: [
+        {
+          name: 'description',
+          content: 'Продать элитный или коллекционный коньяк с выгодной оценкой. Наши курьеры в Москве проведут сделку быстро ,на лучших условиях'
+        }
+      ]
+    }
   },
   viski: {
     title: 'виски',
-    imgName: 'viski'
+    imgName: 'viski',
+    head: {
+      title: 'Продать виски. Он-лайн калькулятор выкупа алкоголя',
+      meta: [
+        {
+          name: 'description',
+          content: 'Продать элитное или коллекционное виски с выгодной оценкой. Наши курьеры в Москве проведут сделку быстро ,на лучших условиях'
+        }
+      ]
+    }
   },
   vodka: {
     title: 'водка',
-    imgName: 'vodka'
+    imgName: 'vodka',
+    head: {
+      title: 'Продать водку. Он-лайн калькулятор выкупа алкоголя',
+      meta: [
+        {
+          name: 'description',
+          content: 'Продать элитную или коллекционную водку с выгодной оценкой. Наши курьеры в Москве проведут сделку быстро ,на лучших условиях'
+        }
+      ]
+    }
   },
   shamp: {
     title: 'шампанское',
-    imgName: 'shamp'
+    imgName: 'shamp',
+    head: {
+      title: 'Продать шампанское. Он-лайн калькулятор выкупа алкоголя',
+      meta: [
+        {
+          name: 'description',
+          content: 'Продать элитное или коллекционное шампанское с выгодной оценкой. Наши курьеры в Москве проведут сделку быстро ,на лучших условиях'
+        }
+      ]
+    }
   },
   pivo: {
     title: 'пиво',
-    imgName: 'pivo'
+    imgName: 'pivo',
+    head: {
+      title: 'Продать пиво. Он-лайн калькулятор выкупа алкоголя',
+      meta: [
+        {
+          name: 'description',
+          content: 'Продать элитное или коллекционное пиво с выгодной оценкой. Наши курьеры в Москве проведут сделку быстро ,на лучших условиях'
+        }
+      ]
+    }
   }
 }
 
@@ -48,7 +102,13 @@ const productNames = {
   components: {
     'trade-component': Trade
   },
-  layout: 'selling'
+  layout: 'selling',
+  head () {
+    const current = Object.values(productNames).find(product => product.title === this.$route.params.name)
+    const head = current?.head || {}
+
+    return head
+  }
 })
 export default class SellingName extends mixins(AosMixin) {
   validate ({ params }: NuxtOptions) {
