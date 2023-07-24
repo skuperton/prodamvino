@@ -66,6 +66,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxt/image',
     '@nuxtjs/axios',
+    '@nuxtjs/yandex-metrika',
     ['vue-scrollto/nuxt', [{
       container: 'body',
       duration: 500,
@@ -75,6 +76,13 @@ export default {
       cancelable: true
     }]]
   ],
+  yandexMetrika: {
+    id: process.env.YANDEX_METRIKA_ID,
+    webvisor: true,
+    clickmap: true,
+    trackLinks: true,
+    accurateTrackBounce: true
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
