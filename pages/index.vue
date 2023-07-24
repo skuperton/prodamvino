@@ -39,6 +39,10 @@ import Redemption from '~/components/sections/redemption.vue'
         {
           name: 'description',
           content: 'Продать элитный или коллекционный алкоголь с выгодной оценкой. Наши курьеры в Москве проведут сделку быстро ,на лучших условиях'
+        },
+        {
+          name: 'yandex-verification',
+          content: process.env.VERIFICATION_ID || ''
         }
       ]
     }
