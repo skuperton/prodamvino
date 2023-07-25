@@ -1,1 +1,22 @@
+name: Deploy
 
+on:
+  push:
+    branches:
+      - feature
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # Setup key
+      - run: set -eu
+      - run: mkdir "$HOME/.ssh"
+      - run: echo "$" > "$HOME/.ssh/git"
+      - run: chmod 600 "$HOME/.ssh/git"
+      # Build
+      - run: npm ci
+      - run: npm run build
+      # Deploy
+      - run: cd app && rsync -e "ssh -p 20022 -i $HOME/.ssh/git -o StrictHostKeyChecking=no" --archive --compress --delete . 80.78.241.19/home/django/prodamvino-frontend/
