@@ -22,7 +22,7 @@ const productNames = {
     title: 'вино',
     imgName: 'vine',
     head: {
-      title: 'Продать вино. Он-лайн калькулятор выкупа алкоголя',
+      title: 'Продать вино. Он-лайн калькулятор скупки алкоголя',
       meta: [
         {
           name: 'description',
